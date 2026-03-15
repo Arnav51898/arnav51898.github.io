@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #35424a;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        nav {
+            margin: 0;
+            padding: 1em;
+            background: #35424a;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background: #e8491d;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 { 
+            color: #333;
+        }
+        .gallery {
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+        }
+        .gallery img {
+            width: 100%;
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .buttons {
+            text-align: center;
+        }
+        .buttons button {
+            background: #35424a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 1em;
+            background: #35424a;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Aviation Portfolio</h1>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I am an aviation enthusiast with a passion for flying and exploring the skies. My journey in aviation has been both challenging and rewarding.</p>
+        </section>
+        <section id="experience">
+            <h2>Flight Experience</h2>
+            <p>I have accumulated over 100 flight hours, with experience in various aircraft types including single-engine and multi-engine planes.</p>
+        </section>
+        <div class="gallery">
+            <img src="https://drive.google.com/uc?id=IMAGE_ID_1" class="active" alt="Professional Photo 1">
+            <img src="https://drive.google.com/uc?id=IMAGE_ID_2" alt="Professional Photo 2">
+            <div class="buttons">
+                <button onclick="prevSlide()">&#10094;</button>
+                <button onclick="nextSlide()">&#10095;</button>
+            </div>
+        </div>
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>If you would like to get in touch, please reach out via email at [your-email@example.com].</p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2026 My Aviation Portfolio</p>
+    </footer>
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.gallery img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            showSlide(slideIndex);
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(slideIndex);
+        }
+
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
