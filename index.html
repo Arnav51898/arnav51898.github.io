@@ -3,174 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arnav Pareek - Aviation Content Creator & CPL</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Photo Gallery</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .hero { position: relative; overflow: hidden; }
+        .gallery { display: none; position: absolute; width: 100%; height: 100%; }
+        .nav-button { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(255, 255, 255, 0.8); border: none; cursor: pointer; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">✈️ Arnav Pareek</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#content">Content</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <div class="hero">
+        <div class="gallery" id="gallery1">
+            <img src="https://drive.google.com/uc?id=1PFErMB5oAa9Gfebw1M5zrHYPcar7ppe_&export=view" style="width: 100%;" />
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Arnav Pareek</h1>
-                <p class="tagline">✈️ Commercial Pilot | CPL with Instrument Rating</p>
-                <p class="subtitle">Aviation Content Creator | Aspiring Airline Pilot | Flight Educator</p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn btn-primary">Learn More</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
-            </div>
+        <div class="gallery" id="gallery2">
+            <img src="https://drive.google.com/uc?id=1AYaCykD_Lvs-iye20bOmchAFjqw3KDj9&export=view" style="width: 100%;" />
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>From watching airplanes soar over my childhood home in Delhi to earning my wings in the skies of Florida, aviation has always captivated me. As a kid, the sight of aircraft crossing overhead sparked an endless curiosity—I was determined to understand how they defied gravity and to one day command the cockpit myself.</p>
-                    
-                    <p>That childhood fascination evolved into a dedicated pursuit, leading me to train rigorously and earn my <strong>FAA Commercial Pilot License with Instrument Rating</strong>.</p>
-                    
-                    <p>I completed my training at <strong>International Aero Academy</strong>, a Part 141 FAA-certified flight school in Lakeland, Florida. Every hour in the air has taught me the non-negotiable importance of precision, preparation, and accountability—no room for error when lives depend on sound decisions.</p>
-                    
-                    <p><strong>My Vision:</strong> To join a commercial airline where the cockpit view becomes my everyday office—commanding larger aircraft, ensuring safe operations for passengers and crew, and continuing to grow in this dynamic industry.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Flight Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2>Flight Experience</h2>
-            <div class="experience-grid">
-                <div class="experience-card">
-                    <h3>Total Flight Hours</h3>
-                    <p class="stat">350+</p>
-                    <p>Single-Engine Land Aircraft</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Simulator Hours</h3>
-                    <p class="stat">30+</p>
-                    <p>Advanced Flight Training</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Primary Aircraft</h3>
-                    <p class="stat">Cessna 172</p>
-                    <p>Commercial & Instrument Training</p>
-                </div>
-                <div class="experience-card">
-                    <h3>Additional Aircraft</h3>
-                    <p class="stat">Tecnam P2008 & Cessna 152</p>
-                    <p>Diversified Flight Experience</p>
-                </div>
-            </div>
-            
-            <div class="skills-section">
-                <h3>Core Competencies</h3>
-                <div class="skills-grid">
-                    <div class="skill-tag">Night Flying</div>
-                    <div class="skill-tag">IMC Scenarios</div>
-                    <div class="skill-tag">Weather Assessment</div>
-                    <div class="skill-tag">Situational Awareness</div>
-                    <div class="skill-tag">Decision Making Under Pressure</div>
-                    <div class="skill-tag">Flight Planning</div>
-                    <div class="skill-tag">Navigation</div>
-                    <div class="skill-tag">Precision Flying</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Focus Section -->
-    <section id="content" class="content">
-        <div class="container">
-            <h2>Content Focus Areas</h2>
-            <div class="content-grid">
-                <div class="content-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Flight Training</h3>
-                    <p>Sharing insights from my CPL and Instrument Rating journey</p>
-                </div>
-                <div class="content-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Career Development</h3>
-                    <p>Guiding aspiring pilots through the path to airlines</p>
-                </div>
-                <div class="content-card">
-                    <i class="fas fa-plane"></i>
-                    <h3>Aviation News</h3>
-                    <p>Discussing industry trends and pilot opportunities</p>
-                </div>
-                <div class="content-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Pilot Tips & Tricks</h3>
-                    <p>Practical advice for safe and efficient flying</p>
-                </div>
-            </div>
-
-            <div class="special-section">
-                <h3>Community Involvement</h3>
-                <p>🏆 Volunteered at <strong>SUN 'n FUN Aerospace Expo</strong> - one of the world's premier aviation events</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Connect With Me</h2>
-            <p class="contact-intro">Let's build meaningful connections in the aviation community!</p>
-            
-            <div class="social-links">
-                <a href="https://www.youtube.com/@aerovibes25" target="_blank" class="social-btn">
-                    <i class="fab fa-youtube"></i> YouTube
-                </a>
-                <a href="https://www.instagram.com/arnavpareek9108" target="_blank" class="social-btn">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://x.com/ArnavPareek9108" target="_blank" class="social-btn">
-                    <i class="fab fa-x-twitter"></i> X/Twitter
-                </a>
-                <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank" class="social-btn">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:arnavpareek9108@gmail.com" class="social-btn">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-            </div>
-
-            <div class="contact-info">
-                <p><strong>Email:</strong> arnavpareek9108@gmail.com</p>
-                <p><strong>Location:</strong> Delhi, India | Licensed in USA</p>
-                <p><strong>Credentials:</strong> FAA Commercial Pilot License with Instrument Rating</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Arnav Pareek. All rights reserved. | Aviation Content Creator & CPL</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        <button class="nav-button prev" onclick="changeSlide(-1)">❮</button>
+        <button class="nav-button next" onclick="changeSlide(1)">❯</button>
+    </div>
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.gallery');
+        function showSlide(n) {
+            slides.forEach((slide) => slide.style.display = 'none');
+            slides[n].style.display = 'block';
+        }
+        function changeSlide(n) {
+            index = (index + n + slides.length) % slides.length;
+            showSlide(index);
+        }
+        setInterval(() => changeSlide(1), 5000);
+        showSlide(index);
+    </script>
 </body>
 </html>
