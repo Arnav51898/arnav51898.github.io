@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Training Map - Arnav Pareek</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: linear-gradient(135deg, #003d82, #004e89);
+            --accent-color: #ff6b35;
+            --card-bg: white;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .map-section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .info-box {
+            background: var(--header-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .info-box h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .airports-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .airport-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .airport-card h3 {
+            color: #003d82;
+            margin-bottom: 5px;
+        }
+        
+        .airport-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            background: #003d82;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        
+        .back-link:hover {
+            background: var(--accent-color);
+        }
+        
+        footer {
+            background: #003d82;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            #map { height: 400px; }
+            header h1 { font-size: 24px; }
+            .airports-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✈️ Flight Training Map</h1>
+        <p>Arnav Pareek - Training Airports in Florida</p>
+    </header>
+    
+    <div class="container">
+        <a href="index.html#blog" class="back-link">← Back to Home</a>
+        
+        <div class="map-section">
+            <h2>Interactive Training Map</h2>
+            <p>Click on the markers to see airport details. All airports are in Florida where my training took place.</p>
+            <div id="map"></div>
+        </div>
+        
+        <div class="info-box">
+            <h2>📍 Training Airports</h2>
+            <p>Total Airports: 20</p>
+            <p>All training conducted in Florida - Home to diverse airfields for comprehensive pilot training</p>
+        </div>
+        
+        <div class="map-section">
+            <h2>Airport List</h2>
+            <div class="airports-list">
+                <div class="airport-card">
+                    <h3>KLAL</h3>
+                    <p>Lakeland Linder International</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KPCM</h3>
+                    <p>Panama City-Bay County</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KBOW</h3>
+                    <p>Bartow Executive</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KVDF</h3>
+                    <p>Vero Beach Regional</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KMKY</h3>
+                    <p>Melbourne International</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KZPH</h3>
+                    <p>Zepherhills Municipal</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KSRQ</h3>
+                    <p>Sarasota-Bradenton International</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KCHN</h3>
+                    <p>Chokoloskee Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KPGD</h3>
+                    <p>Punta Gorda Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KAPF</h3>
+                    <p>Naples Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KGIF</h3>
+                    <p>Griffith Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>X07</h3>
+                    <p>Private Airstrip</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KAVO</h3>
+                    <p>Avon Park Executive</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KOCF</h3>
+                    <p>Ocala International</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KGNV</h3>
+                    <p>Gainesville Regional</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KCTY</h3>
+                    <p>Citrus County Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KSGJ</h3>
+                    <p>St. Augustine Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KOMN</h3>
+                    <p>Ormond Beach Airport</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KDAB</h3>
+                    <p>Daytona Beach International</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2026 Arnav Pareek | Aviation Content Creator & CPL</p>
+    </footer>
+    
+    <script>
+        // Initialize map centered on Florida
+        const map = L.map('map').setView([27.6648, -81.5158], 7);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Airport data with coordinates
+        const airports = [
+            { code: 'KLAL', name: 'Lakeland Linder International', lat: 27.9899, lng: -82.0258 },
+            { code: 'KPCM', name: 'Panama City-Bay County', lat: 30.2086, lng: -85.6787 },
+            { code: 'KBOW', name: 'Bartow Executive', lat: 27.8951, lng: -81.7682 },
+            { code: 'KVDF', name: 'Vero Beach Regional', lat: 27.9353, lng: -80.2580 },
+            { code: 'KMKY', name: 'Melbourne International', lat: 28.1032, lng: -80.5753 },
+            { code: 'KZPH', name: 'Zepherhills Municipal', lat: 28.2389, lng: -82.1648 },
+            { code: 'KSRQ', name: 'Sarasota-Bradenton International', lat: 27.3954, lng: -82.5540 },
+            { code: 'KCHN', name: 'Chokoloskee Airport', lat: 25.8156, lng: -81.3239 },
+            { code: 'KPGD', name: 'Punta Gorda Airport', lat: 26.9193, lng: -81.9853 },
+            { code: 'KAPF', name: 'Naples Airport', lat: 26.1525, lng: -81.7754 },
+            { code: 'KGIF', name: 'Griffith Airport', lat: 28.9106, lng: -81.3162 },
+            { code: 'X07', name: 'Private Airstrip', lat: 28.7167, lng: -81.5 },
+            { code: 'KAVO', name: 'Avon Park Executive', lat: 27.5889, lng: -81.5258 },
+            { code: 'KOCF', name: 'Ocala International', lat: 29.1800, lng: -82.2262 },
+            { code: 'KGNV', name: 'Gainesville Regional', lat: 29.2898, lng: -82.2719 },
+            { code: 'KCTY', name: 'Citrus County Airport', lat: 28.8953, lng: -82.6042 },
+            { code: 'KSGJ', name: 'St. Augustine Airport', lat: 29.9419, lng: -81.3087 },
+            { code: 'KOMN', name: 'Ormond Beach Airport', lat: 29.2853, lng: -81.0947 },
+            { code: 'KDAB', name: 'Daytona Beach International', lat: 29.1799, lng: -81.0581 }
+        ];
+        
+        // Add markers to map
+        airports.forEach(airport => {
+            const marker = L.marker([airport.lat, airport.lng]).addTo(map);
+            marker.bindPopup(`
+                <div style="text-align: center;">
+                    <h3 style="color: #003d82; margin: 10px 0;">${airport.code}</h3>
+                    <p style="margin: 5px 0; font-size: 14px;">${airport.name}</p>
+                    <p style="margin: 5px 0; font-size: 12px; color: #666;">
+                        Lat: ${airport.lat.toFixed(4)}<br>
+                        Lng: ${airport.lng.toFixed(4)}
+                    </p>
+                </div>
+            `);
+        });
+    </script>
+</body>
+</html>
