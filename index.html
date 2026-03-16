@@ -32,6 +32,19 @@
         .social a:hover { background: #ff6b35; }
         .info { background: #f4f4f4; padding: 30px; border-radius: 8px; text-align: center; font-size: 18px; }
         footer { background: #003d82; color: white; text-align: center; padding: 25px; margin-top: 50px; font-size: 18px; }
+        
+        /* Gallery Styles */
+        .gallery-container { position: relative; width: 100%; max-width: 600px; margin: 30px auto; background: #f4f4f4; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .gallery { position: relative; width: 100%; padding-bottom: 75%; height: 0; overflow: hidden; }
+        .gallery img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .gallery img.active { opacity: 1; }
+        .nav-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 61, 130, 0.8); color: white; border: none; padding: 15px 20px; font-size: 24px; cursor: pointer; z-index: 10; border-radius: 5px; transition: background 0.3s; }
+        .nav-button:hover { background: rgba(255, 107, 53, 0.9); }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .dots { text-align: center; padding: 15px; background: #f4f4f4; }
+        .dot { height: 12px; width: 12px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; cursor: pointer; transition: background-color 0.3s; }
+        .dot.active { background-color: #ff6b35; }
     </style>
 </head>
 <body>
@@ -41,6 +54,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#content">Content</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -63,85 +77,10 @@
         <p style="margin-top: 20px;"><strong>My Vision:</strong> To join a commercial airline commanding larger aircraft and ensuring safe operations for passengers and crew.</p>
     </section>
 
-    <section id="experience">
-        <h2>Flight Experience</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Total Flight Hours</h3>
-                <p class="stat">350+</p>
-                <p>Single-Engine Aircraft</p>
-            </div>
-            <div class="card">
-                <h3>Simulator Hours</h3>
-                <p class="stat">30+</p>
-                <p>Advanced Training</p>
-            </div>
-            <div class="card">
-                <h3>Primary Aircraft</h3>
-                <p class="stat">Cessna 172</p>
-                <p>Training Platform</p>
-            </div>
-            <div class="card">
-                <h3>Additional Aircraft</h3>
-                <p class="stat">Tecnam & Cessna</p>
-                <p>Diversified Experience</p>
-            </div>
-        </div>
-
-        <h2>Core Competencies</h2>
-        <div class="grid">
-            <div class="skill">Night Flying</div>
-            <div class="skill">IMC Scenarios</div>
-            <div class="skill">Weather Assessment</div>
-            <div class="skill">Situational Awareness</div>
-            <div class="skill">Decision Making</div>
-            <div class="skill">Flight Planning</div>
-            <div class="skill">Navigation</div>
-            <div class="skill">Precision Flying</div>
-        </div>
-    </section>
-
-    <section id="content">
-        <h2>Content Focus Areas</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📚 Flight Training</h3>
-                <p>CPL and Instrument Rating insights</p>
-            </div>
-            <div class="card">
-                <h3>📈 Career Development</h3>
-                <p>Path to airlines</p>
-            </div>
-            <div class="card">
-                <h3>✈️ Aviation News</h3>
-                <p>Industry trends</p>
-            </div>
-            <div class="card">
-                <h3>💡 Pilot Tips</h3>
-                <p>Safe flying advice</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Connect With Me</h2>
-        <div class="social">
-            <a href="https://www.youtube.com/@aerovibes25" target="_blank">YouTube</a>
-            <a href="https://www.instagram.com/arnavpareek9108" target="_blank">Instagram</a>
-            <a href="https://x.com/ArnavPareek9108" target="_blank">X/Twitter</a>
-            <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank">LinkedIn</a>
-            <a href="mailto:arnavpareek9108@gmail.com">Email</a>
-        </div>
-        <div class="info">
-            <p><strong>Email:</strong> arnavpareek9108@gmail.com</p>
-            <p><strong>Location:</strong> Delhi, India | Licensed in USA</p>
-            <p><strong>Credentials:</strong> FAA Commercial Pilot License with Instrument Rating</p>
-        </div>
-    </section>
-</div>
-
-<footer>
-    <p>&copy; 2026 Arnav Pareek | Aviation Content Creator & CPL</p>
-</footer>
-</body>
-</html>
+    <section id="gallery">
+        <h2>My Journey</h2>
+        <div class="gallery-container">
+            <div class="gallery">
+                <img src="https://drive.google.com/uc?id=1AYaCykD_Lvs-iye20bOmchAFjqw3KDj9&export=view" alt="Aviation Photo 1" class="active">
+                <img src="https://drive.google.com/uc?id=1PFErMB5oAa9Gfebw1M5zrHYPcar7ppe_&export=view"*
+
