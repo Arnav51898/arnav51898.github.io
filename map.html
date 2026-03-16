@@ -153,7 +153,7 @@
         
         <div class="info-box">
             <h2>📍 Training Airports</h2>
-            <p>Total Airports: 20</p>
+            <p>Total Airports: 21</p>
             <p>All training conducted in Florida - Home to diverse airfields for comprehensive pilot training</p>
         </div>
         
@@ -166,7 +166,7 @@
                 </div>
                 <div class="airport-card">
                     <h3>KPCM</h3>
-                    <p>Panama City-Bay County</p>
+                    <p>Plant City Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>KBOW</h3>
@@ -174,11 +174,11 @@
                 </div>
                 <div class="airport-card">
                     <h3>KVDF</h3>
-                    <p>Vero Beach Regional</p>
+                    <p>Tampa Executive Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>KMKY</h3>
-                    <p>Melbourne International</p>
+                    <p>Marco Island Executive Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>KZPH</h3>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="airport-card">
                     <h3>KCHN</h3>
-                    <p>Chokoloskee Airport</p>
+                    <p>Wauchula Municipal Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>KPGD</h3>
@@ -202,7 +202,7 @@
                 </div>
                 <div class="airport-card">
                     <h3>KGIF</h3>
-                    <p>Griffith Airport</p>
+                    <p>Winter Haven Regional Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>X07</h3>
@@ -222,7 +222,7 @@
                 </div>
                 <div class="airport-card">
                     <h3>KCTY</h3>
-                    <p>Citrus County Airport</p>
+                    <p>Cross City Airport</p>
                 </div>
                 <div class="airport-card">
                     <h3>KSGJ</h3>
@@ -235,6 +235,10 @@
                 <div class="airport-card">
                     <h3>KDAB</h3>
                     <p>Daytona Beach International</p>
+                </div>
+                <div class="airport-card">
+                    <h3>KEZM</h3>
+                    <p>Heart of Georgia Airport</p>
                 </div>
             </div>
         </div>
@@ -254,27 +258,28 @@
             maxZoom: 19
         }).addTo(map);
         
-        // Airport data with coordinates
+        // Airport data with coordinates - VERIFIED ICAO CODES
         const airports = [
             { code: 'KLAL', name: 'Lakeland Linder International', lat: 27.9899, lng: -82.0258 },
-            { code: 'KPCM', name: 'Panama City-Bay County', lat: 30.2086, lng: -85.6787 },
+            { code: 'KPCM', name: 'Plant City Airport', lat: 28.0039, lng: -82.1183 },
             { code: 'KBOW', name: 'Bartow Executive', lat: 27.8951, lng: -81.7682 },
-            { code: 'KVDF', name: 'Vero Beach Regional', lat: 27.9353, lng: -80.2580 },
-            { code: 'KMKY', name: 'Melbourne International', lat: 28.1032, lng: -80.5753 },
+            { code: 'KVDF', name: 'Tampa Executive Airport', lat: 28.0731, lng: -82.2752 },
+            { code: 'KMKY', name: 'Marco Island Executive Airport', lat: 25.9975, lng: -81.7158 },
             { code: 'KZPH', name: 'Zepherhills Municipal', lat: 28.2389, lng: -82.1648 },
             { code: 'KSRQ', name: 'Sarasota-Bradenton International', lat: 27.3954, lng: -82.5540 },
-            { code: 'KCHN', name: 'Chokoloskee Airport', lat: 25.8156, lng: -81.3239 },
+            { code: 'KCHN', name: 'Wauchula Municipal Airport', lat: 27.5189, lng: -81.8136 },
             { code: 'KPGD', name: 'Punta Gorda Airport', lat: 26.9193, lng: -81.9853 },
             { code: 'KAPF', name: 'Naples Airport', lat: 26.1525, lng: -81.7754 },
-            { code: 'KGIF', name: 'Griffith Airport', lat: 28.9106, lng: -81.3162 },
+            { code: 'KGIF', name: 'Winter Haven Regional Airport', lat: 27.9347, lng: -81.7367 },
             { code: 'X07', name: 'Private Airstrip', lat: 28.7167, lng: -81.5 },
             { code: 'KAVO', name: 'Avon Park Executive', lat: 27.5889, lng: -81.5258 },
             { code: 'KOCF', name: 'Ocala International', lat: 29.1800, lng: -82.2262 },
             { code: 'KGNV', name: 'Gainesville Regional', lat: 29.2898, lng: -82.2719 },
-            { code: 'KCTY', name: 'Citrus County Airport', lat: 28.8953, lng: -82.6042 },
+            { code: 'KCTY', name: 'Cross City Airport', lat: 29.6447, lng: -83.1117 },
             { code: 'KSGJ', name: 'St. Augustine Airport', lat: 29.9419, lng: -81.3087 },
             { code: 'KOMN', name: 'Ormond Beach Airport', lat: 29.2853, lng: -81.0947 },
-            { code: 'KDAB', name: 'Daytona Beach International', lat: 29.1799, lng: -81.0581 }
+            { code: 'KDAB', name: 'Daytona Beach International', lat: 29.1799, lng: -81.0581 },
+            { code: 'KEZM', name: 'Heart of Georgia Airport', lat: 32.4897, lng: -82.7117 }
         ];
         
         // Add markers to map
