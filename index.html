@@ -3,44 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviation Portfolio</title>
+    <title>Arnav Pareek - Aviation Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 10px;
-        }
-        .gallery img {
-            margin: 10px;
-            max-width: 300px;
-            height: auto;
-            border-radius: 5px;
-        }
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.8; color: #333; background: #f4f4f4; }
+        header { background: linear-gradient(135deg, #003d82, #004e89); color: white; padding: 20px; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-around; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 24px; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav a { color: white; text-decoration: none; transition: 0.3s; }
+        nav a:hover { color: #ff6b35; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hero { background: linear-gradient(135deg, #003d82, #004e89); color: white; padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 48px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; margin-bottom: 15px; }
+        section { background: white; margin: 30px 0; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { color: #003d82; border-bottom: 3px solid #ff6b35; padding-bottom: 10px; margin-bottom: 20px; }
+        p { font-size: 16px; margin-bottom: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #f4f4f4; padding: 20px; border-radius: 5px; text-align: center; border-left: 4px solid #ff6b35; }
+        .card h3 { color: #003d82; margin-bottom: 10px; }
+        .stat { font-size: 30px; font-weight: bold; color: #ff6b35; }
+        .skill { background: linear-gradient(135deg, #003d82, #004e89); color: white; padding: 15px; border-radius: 5px; text-align: center; font-weight: bold; }
+        .social { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0; }
+        .social a { background: #003d82; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .social a:hover { background: #ff6b35; }
+        .info { background: #f4f4f4; padding: 20px; border-radius: 5px; text-align: center; }
+        footer { background: #003d82; color: white; text-align: center; padding: 15px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Aviation Portfolio</h1>
-    </header>
-    <main>
-        <section class="gallery">
-            <img src="images/image1.jpg" alt="Aircraft Image 1">
-            <img src="images/image2.jpg" alt="Aircraft Image 2">
-            <img src="images/image3.jpg" alt="Aircraft Image 3">
-        </section>
-    </main>
-</body>
-</html>
+
+<header>
+    <nav>
+        <div class="logo">✈️ Arnav Pareek</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="hero">
+    <h1>Arnav Pareek</h1>
+    <p>✈️ Commercial Pilot | CPL with Instrument Rating</p>
+    <p>Aviation Content Creator | Flight Educator</p>
+</div>
+
+<div class="container">
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>From watching airplanes soar over my childhood home in Delhi to earning my wings in Florida, aviation has captivated me. I earned my FAA Commercial Pilot License with Instrument Rating at International Aero Academy.</p>
+        <p><strong>My Vision:</strong> To join a commercial airline commanding larger aircraft and ensuring safe operations.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Flight Experience</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Total Hours</h3>
+                <p class="stat">350+</p>
+                <p>Single-Engine Aircraft</p>
+            </div>
+            <div class="card">
+                <h3>Simulator Hours</h3>
+                <p class="stat">30+</p>
+                <p>Advanced Training</p>
+            </div>
+            <div class="card">
+                <h3>Primary Aircraft</h3>
+                <p class="stat">Cessna 172</p>
+                <p>Training</p>
+            </div>
+        </div>
+
+        <h2>Core Competencies</h2>
+        <div class="grid">
+            <div class="skill">Night Flying</div>
+            <div class="skill">IMC Scenarios</div>
+            <div class="skill">Weather*
+
