@@ -789,13 +789,6 @@ function toggleDarkMode() {
     }
 }
 
-window.addEventListener('load', function() {
-    const darkMode = localStorage.getItem('darkMode');
-    if (darkMode === 'true') {
-        document.documentElement.classList.add('dark-mode');
-    }
-});
-
 function sendEmail(event) {
     event.preventDefault();
     
@@ -854,6 +847,17 @@ function resetCarouselTimer() {
 
 // Start carousel on page load
 window.addEventListener('load', function() {
+    // Dark mode check
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'true') {
+        document.documentElement.classList.add('dark-mode');
+    }
+    
+    // Start carousel
     showSlide(0);
     carouselInterval = setInterval(autoSlide, 5000);
-});*
+});
+</script>
+
+</body>
+</html>
