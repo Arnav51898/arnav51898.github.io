@@ -588,12 +588,12 @@
             <span class="visitor-icon">👥</span>
             <div class="visitor-text">
                 <span class="visitor-total">Visitors</span>
-                <span class="visitor-number" id="visitorCount">0</span>
+                <span class="visitor-number" id="visitorCount">Loading...</span>
             </div>
             <span style="opacity: 0.5; margin: 0 5px;">|</span>
             <div class="visitor-text">
                 <span class="visitor-total">You're</span>
-                <span class="visitor-number" id="yourNumber">#0</span>
+                <span class="visitor-number" id="yourNumber">#Loading...</span>
             </div>
         </div>
         <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
@@ -853,6 +853,13 @@
 </footer>
 
 <script>
+// ⭐⭐⭐ ADD YOUR GITHUB TOKEN HERE ⭐⭐⭐
+// LINE 949: Replace "YOUR_TOKEN_HERE" with your actual token
+const GITHUB_TOKEN = "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";
+const GITHUB_OWNER = "Arnav51898";
+const GITHUB_REPO = "arnav51898.github.io";
+const COUNTER_FILE = "counter-data.json";
+
 function toggleDarkMode() {
     const html = document.documentElement;
     html.classList.toggle('dark-mode');
@@ -920,20 +927,61 @@ function resetCarouselTimer() {
     carouselInterval = setInterval(autoSlide, 5000);
 }
 
-// Visitor Counter Functionality
-function initializeVisitorCounter() {
-    let totalVisitors = localStorage.getItem('totalVisitors');
-    
-    if (!totalVisitors) {
-        totalVisitors = 1;
-    } else {
-        totalVisitors = parseInt(totalVisitors) + 1;
+// ⭐⭐⭐ VISITOR COUNTER WITH GITHUB API ⭐⭐⭐
+async function updateVisitorCounter() {
+    try {
+        // Step 1: Read current counter from GitHub
+        const readUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${COUNTER_FILE}`;
+        
+        const readResponse = await fetch(readUrl, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3.raw'
+            }
+        });
+
+        let currentCount = 0;
+        let sha = '';
+
+        if (readResponse.ok) {
+            const fileContent = await readResponse.json();
+            currentCount = fileContent.visitors || 0;
+            sha = fileContent.sha;
+        }
+
+        // Step 2: Increment counter
+        currentCount++;
+
+        // Step 3: Update counter on GitHub
+        const newContent = {
+            "visitors": currentCount
+        };
+
+        const updateUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${COUNTER_FILE}`;
+        
+        const updateResponse = await fetch(updateUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: `Update visitor count to ${currentCount}`,
+                content: btoa(JSON.stringify(newContent)),
+                sha: sha
+            })
+        });
+
+        if (updateResponse.ok) {
+            document.getElementById('visitorCount').textContent = currentCount;
+            document.getElementById('yourNumber').textContent = '#' + currentCount;
+        }
+
+    } catch (error) {
+        console.error('Error updating visitor counter:', error);
+        document.getElementById('visitorCount').textContent = '?';
+        document.getElementById('yourNumber').textContent = '#?';
     }
-    
-    localStorage.setItem('totalVisitors', totalVisitors);
-    
-    document.getElementById('visitorCount').textContent = totalVisitors;
-    document.getElementById('yourNumber').textContent = '#' + totalVisitors;
 }
 
 // Start everything on page load
@@ -944,8 +992,8 @@ window.addEventListener('load', function() {
         document.documentElement.classList.add('dark-mode');
     }
     
-    // Initialize visitor counter
-    initializeVisitorCounter();
+    // Update visitor counter
+    updateVisitorCounter();
     
     // Start carousel
     showSlide(0);
