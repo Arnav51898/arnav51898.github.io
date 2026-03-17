@@ -709,4 +709,101 @@
             <div class="card">
                 <h3>✈️ Aviation News</h3>
                 <p>Industry trends</p>
-            </div>*
+            </div>
+            <div class="card">
+                <h3>💡 Pilot Tips</h3>
+                <p>Safe flying</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Connect With Me</h2>
+        
+        <h3 style="color: #003d82; margin-top: 30px; margin-bottom: 20px;">Send Me a Message</h3>
+        <form onsubmit="sendEmail(event)">
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <h3 style="color: #003d82; margin-top: 40px; margin-bottom: 20px;">Or Connect On Social Media</h3>
+        <div class="social">
+            <a href="https://www.youtube.com/@aerovibes25" target="_blank">YouTube</a>
+            <a href="https://www.instagram.com/arnavpareek9108" target="_blank">Instagram</a>
+            <a href="https://x.com/ArnavPareek9108" target="_blank">X/Twitter</a>
+            <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank">LinkedIn</a>
+        </div>
+        
+        <div class="info">
+            <p><strong>Email:</strong> arnavpareek9108@gmail.com</p>
+            <p><strong>Location:</strong> Delhi, India | Licensed in USA</p>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Arnav Pareek | Aviation Content Creator & CPL</p>
+</footer>
+
+<script>
+function toggleDarkMode() {
+    const html = document.documentElement;
+    html.classList.toggle('dark-mode');
+    
+    if (html.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'true');
+    } else {
+        localStorage.setItem('darkMode', 'false');
+    }
+}
+
+function sendEmail(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+    
+    const mailtoLink = `mailto:arnavpareek9108@gmail.com?subject=New Contact from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+    
+    window.location.href = mailtoLink;
+    
+    document.querySelector('form').reset();
+    alert('Opening your email client... Your message details are ready to send!');
+}
+
+let currentSlideIndex = 0;
+let carouselInterval;
+
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (slides.length === 0) return;
+    
+    if (index >= slides.length) currentSlideIndex = 0;
+    if (index < 0) currentSlideIndex = slides.length - 1;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    *
