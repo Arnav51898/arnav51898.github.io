@@ -69,66 +69,6 @@
             color: var(--accent-color); 
         }
         
-        /* Visitor Counter Styles */
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .visitor-counter {
-            background: rgba(255, 107, 53, 0.2);
-            border: 2px solid var(--accent-color);
-            color: white;
-            padding: 10px 18px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .visitor-counter:hover {
-            background: rgba(255, 107, 53, 0.35);
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 107, 53, 0.6);
-        }
-
-        .visitor-icon {
-            font-size: 18px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        .visitor-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .visitor-total {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .visitor-number {
-            font-size: 14px;
-            color: var(--accent-color);
-            font-weight: 900;
-        }
-
         .dark-mode-toggle {
             background: rgba(255,255,255,0.2);
             border: 2px solid white;
@@ -239,7 +179,6 @@
             padding: 15px; 
         }
 
-        /* Contact Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -285,7 +224,6 @@
             background: var(--accent-color);
         }
 
-        /* Statistics Dashboard */
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -332,7 +270,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Aircraft Types */
         .aircraft-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -370,7 +307,6 @@
             opacity: 0.9;
         }
 
-        /* Certifications */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -402,7 +338,6 @@
             color: #666;
         }
 
-        /* BLOG SECTION STYLES */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -474,7 +409,6 @@
             background: var(--accent-color);
         }
 
-        /* Profile Photo Styles */
         .profile-photo {
             text-align: center;
             margin: 20px 0;
@@ -489,7 +423,6 @@
             box-shadow: 0 4px 15px var(--card-shadow);
         }
 
-        /* Carousel Styles */
         .carousel-container {
             position: relative;
             max-width: 500px;
@@ -583,21 +516,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div class="header-right">
-        <div class="visitor-counter" title="Total website visitors worldwide">
-            <span class="visitor-icon">👥</span>
-            <div class="visitor-text">
-                <span class="visitor-total">Visitors</span>
-                <span class="visitor-number" id="visitorCount">Loading...</span>
-            </div>
-            <span style="opacity: 0.5; margin: 0 5px;">|</span>
-            <div class="visitor-text">
-                <span class="visitor-total">You're</span>
-                <span class="visitor-number" id="yourNumber">#Loading...</span>
-            </div>
-        </div>
-        <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-    </div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 </header>
 
 <div class="hero">
@@ -611,12 +530,10 @@
     <section id="about">
         <h2>About Me</h2>
         
-        <!-- Profile Photo -->
         <div class="profile-photo">
             <img src="arnav resume pic.jpg" alt="Arnav Pareek" class="profile-img">
         </div>
         
-        <!-- Photo Carousel -->
         <div class="carousel-container">
             <div class="carousel-inner">
                 <img src="arnav resume pic.jpg" alt="Photo 1" class="carousel-item active">
@@ -637,11 +554,9 @@
         <p><strong>My Vision:</strong> To join a commercial airline commanding larger aircraft and ensuring safe operations.</p>
     </section>
 
-    <!-- BLOG SECTION -->
     <section id="blog">
         <h2>📝 Latest Articles</h2>
         <div class="blog-grid">
-            <!-- Article 1 -->
             <div class="blog-card">
                 <div class="blog-date">March 16, 2026</div>
                 <h3 class="blog-title">CPL Check Ride Tips: What I Learned</h3>
@@ -649,8 +564,6 @@
                 <p class="blog-preview">After months of training and countless sim hours, I finally sat for my Commercial check ride. Here's everything I wish someone had told me - 8 real, actionable tips from my experience...</p>
                 <a href="cpl-checklist.html" class="blog-read-more">Read Full Article →</a>
             </div>
-
-            <!-- More articles coming soon -->
         </div>
     </section>
 
@@ -796,210 +709,4 @@
             <div class="card">
                 <h3>✈️ Aviation News</h3>
                 <p>Industry trends</p>
-            </div>
-            <div class="card">
-                <h3>💡 Pilot Tips</h3>
-                <p>Safe flying</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Connect With Me</h2>
-        
-        <h3 style="color: #003d82; margin-top: 30px; margin-bottom: 20px;">Send Me a Message</h3>
-        <form onsubmit="sendEmail(event)">
-            <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Phone Number *</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-
-        <h3 style="color: #003d82; margin-top: 40px; margin-bottom: 20px;">Or Connect On Social Media</h3>
-        <div class="social">
-            <a href="https://www.youtube.com/@aerovibes25" target="_blank">YouTube</a>
-            <a href="https://www.instagram.com/arnavpareek9108" target="_blank">Instagram</a>
-            <a href="https://x.com/ArnavPareek9108" target="_blank">X/Twitter</a>
-            <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank">LinkedIn</a>
-        </div>
-        
-        <div class="info">
-            <p><strong>Email:</strong> arnavpareek9108@gmail.com</p>
-            <p><strong>Location:</strong> Delhi, India | Licensed in USA</p>
-        </div>
-    </section>
-
-</div>
-
-<footer>
-    <p>&copy; 2026 Arnav Pareek | Aviation Content Creator & CPL</p>
-</footer>
-
-<script>
-// ⭐⭐⭐ ADD YOUR GITHUB TOKEN HERE ⭐⭐⭐
-// LINE 949: Replace "YOUR_TOKEN_HERE" with your actual token
-const GITHUB_TOKEN = "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";
-const GITHUB_OWNER = "Arnav51898";
-const GITHUB_REPO = "arnav51898.github.io";
-const COUNTER_FILE = "counter-data.json";
-
-function toggleDarkMode() {
-    const html = document.documentElement;
-    html.classList.toggle('dark-mode');
-    
-    if (html.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'true');
-    } else {
-        localStorage.setItem('darkMode', 'false');
-    }
-}
-
-function sendEmail(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('message').value;
-    
-    const mailtoLink = `mailto:arnavpareek9108@gmail.com?subject=New Contact from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
-    
-    window.location.href = mailtoLink;
-    
-    document.querySelector('form').reset();
-    alert('Opening your email client... Your message details are ready to send!');
-}
-
-// Carousel functionality
-let currentSlideIndex = 0;
-let carouselInterval;
-
-function showSlide(index) {
-    const slides = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    if (index >= slides.length) currentSlideIndex = 0;
-    if (index < 0) currentSlideIndex = slides.length - 1;
-    
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
-    
-    slides[currentSlideIndex].classList.add('active');
-    indicators[currentSlideIndex].classList.add('active');
-}
-
-function changeSlide(n) {
-    currentSlideIndex += n;
-    showSlide(currentSlideIndex);
-    resetCarouselTimer();
-}
-
-function currentSlide(n) {
-    currentSlideIndex = n;
-    showSlide(currentSlideIndex);
-    resetCarouselTimer();
-}
-
-function autoSlide() {
-    currentSlideIndex++;
-    showSlide(currentSlideIndex);
-}
-
-function resetCarouselTimer() {
-    clearInterval(carouselInterval);
-    carouselInterval = setInterval(autoSlide, 5000);
-}
-
-// ⭐⭐⭐ VISITOR COUNTER WITH GITHUB API ⭐⭐⭐
-async function updateVisitorCounter() {
-    try {
-        // Step 1: Read current counter from GitHub
-        const readUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${COUNTER_FILE}`;
-        
-        const readResponse = await fetch(readUrl, {
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Accept': 'application/vnd.github.v3.raw'
-            }
-        });
-
-        let currentCount = 0;
-        let sha = '';
-
-        if (readResponse.ok) {
-            const fileContent = await readResponse.json();
-            currentCount = fileContent.visitors || 0;
-            sha = fileContent.sha;
-        }
-
-        // Step 2: Increment counter
-        currentCount++;
-
-        // Step 3: Update counter on GitHub
-        const newContent = {
-            "visitors": currentCount
-        };
-
-        const updateUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${COUNTER_FILE}`;
-        
-        const updateResponse = await fetch(updateUrl, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${GITHUB_TOKEN}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: `Update visitor count to ${currentCount}`,
-                content: btoa(JSON.stringify(newContent)),
-                sha: sha
-            })
-        });
-
-        if (updateResponse.ok) {
-            document.getElementById('visitorCount').textContent = currentCount;
-            document.getElementById('yourNumber').textContent = '#' + currentCount;
-        }
-
-    } catch (error) {
-        console.error('Error updating visitor counter:', error);
-        document.getElementById('visitorCount').textContent = '?';
-        document.getElementById('yourNumber').textContent = '#?';
-    }
-}
-
-// Start everything on page load
-window.addEventListener('load', function() {
-    // Dark mode check
-    const darkMode = localStorage.getItem('darkMode');
-    if (darkMode === 'true') {
-        document.documentElement.classList.add('dark-mode');
-    }
-    
-    // Update visitor counter
-    updateVisitorCounter();
-    
-    // Start carousel
-    showSlide(0);
-    carouselInterval = setInterval(autoSlide, 5000);
-});
-</script>
-
-</body>
-</html>
+            </div>*
