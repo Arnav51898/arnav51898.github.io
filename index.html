@@ -806,4 +806,46 @@ function showSlide(index) {
     if (index < 0) currentSlideIndex = slides.length - 1;
     
     slides.forEach(slide => slide.classList.remove('active'));
-    *
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    slides[currentSlideIndex].classList.add('active');
+    indicators[currentSlideIndex].classList.add('active');
+}
+
+function changeSlide(n) {
+    currentSlideIndex += n;
+    showSlide(currentSlideIndex);
+    resetCarouselTimer();
+}
+
+function currentSlide(n) {
+    currentSlideIndex = n;
+    showSlide(currentSlideIndex);
+    resetCarouselTimer();
+}
+
+function autoSlide() {
+    currentSlideIndex++;
+    showSlide(currentSlideIndex);
+}
+
+function resetCarouselTimer() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(autoSlide, 5000);
+}
+
+window.addEventListener('load', function() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'true') {
+        document.documentElement.classList.add('dark-mode');
+    }
+    
+    setTimeout(function() {
+        showSlide(0);
+        carouselInterval = setInterval(autoSlide, 5000);
+    }, 500);
+});
+</script>
+
+</body>
+</html>
