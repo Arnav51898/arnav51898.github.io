@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPL Check Ride Preparation Checklist</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Assuming the existing styles are in this file -->
+    <script>
+        function saveState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                localStorage.setItem(checkbox.id, checkbox.checked);
+            });
+        }
+
+        function loadState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                const checked = localStorage.getItem(checkbox.id) === 'true';
+                checkbox.checked = checked;
+            });
+        }
+
+        function downloadPDF() {
+            // Implement PDF download functionality here
+            alert('Download functionality not implemented yet.');
+        }
+
+        window.onload = loadState;
+    </script>
+</head>
+<body>
+    <h1>CPL Check Ride Preparation Checklist</h1>
+
+    <div id="physical-preparation">
+        <h2>Physical Preparation</h2>
+        <label><input type="checkbox" id="physical1" onchange="saveState()"> Get adequate rest</label> - Sleep well the night before your check ride. <br>
+        <label><input type="checkbox" id="physical2" onchange="saveState()"> Stay hydrated</label> - Drink enough water before your flight. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <div id="mental-preparation">
+        <h2>Mental Preparation</h2>
+        <label><input type="checkbox" id="mental1" onchange="saveState()"> Review your flight plan</label> - Know your route and contingency plans. <br>
+        <label><input type="checkbox" id="mental2" onchange="saveState()"> Go through your maneuvers</label> - Practice them mentally. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <div id="aircraft-preparation">
+        <h2>Aircraft Preparation</h2>
+        <label><input type="checkbox" id="aircraft1" onchange="saveState()"> Perform a thorough pre-flight inspection</label> - Ensure aircraft is ready for flight. <br>
+        <label><input type="checkbox" id="aircraft2" onchange="saveState()"> Check fuel levels</label> - Ensure you have enough for the flight. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <div id="day-of-preparation">
+        <h2>Day-Of Preparation</h2>
+        <label><input type="checkbox" id="day1" onchange="saveState()"> Arrive early</label> - Give yourself time to relax before the ride. <br>
+        <label><input type="checkbox" id="day2" onchange="saveState()"> Review the weather</label> - Understand how it may affect your flight. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <div id="during-check-ride">
+        <h2>During Check Ride</h2>
+        <label><input type="checkbox" id="during1" onchange="saveState()"> Communicate clearly</label> - Keep the examiner informed of your actions. <br>
+        <label><input type="checkbox" id="during2" onchange="saveState()"> Stay calm and focused</label> - Manage your anxiety. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <div id="landing-and-finishing">
+        <h2>Landing & Finishing</h2>
+        <label><input type="checkbox" id="landing1" onchange="saveState()"> Perform a safe landing</label> - Follow all procedures. <br>
+        <label><input type="checkbox" id="landing2" onchange="saveState()"> Celebrate your achievement!</label> - Regardless of the outcome. <br>
+        <!-- Add more items as needed -->
+    </div>
+
+    <button onclick="downloadPDF()">Download as PDF</button>
+</body>
+</html>
