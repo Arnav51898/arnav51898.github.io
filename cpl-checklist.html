@@ -1,461 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CPL Check Ride Tips: What I Learned | Pilot Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --sky: #0a2540;
-      --sky-mid: #1a3f6f;
-      --horizon: #e8f4fd;
-      --gold: #c8922a;
-      --gold-light: #f0c97a;
-      --ink: #1a1a2e;
-      --muted: #5a6478;
-      --surface: #ffffff;
-      --surface-alt: #f7f9fc;
-      --border: #e2e8f0;
-      --accent-light: #eaf3fb;
-    }
-    body {
-      font-family: 'Source Serif 4', Georgia, serif;
-      background: var(--surface);
-      color: var(--ink);
-      line-height: 1.8;
-      font-size: 18px;
-    }
-    .hero {
-      background: var(--sky);
-      color: #fff;
-      padding: 80px 24px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 120%, #1e5fa8 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 20%, #0f3460 0%, transparent 60%);
-    }
-    .hero-runway {
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: center;
-      opacity: 0.18;
-    }
-    .hero-runway span {
-      width: 8px; height: 10px;
-      background: var(--gold-light);
-      border-radius: 1px;
-    }
-    .hero-tag {
-      position: relative;
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      border: 1px solid rgba(200, 146, 42, 0.4);
-      padding: 5px 16px;
-      border-radius: 2px;
-      margin-bottom: 28px;
-    }
-    .hero h1 {
-      position: relative;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(32px, 6vw, 60px);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold-light);
-    }
-    .hero-sub {
-      position: relative;
-      font-size: 16px;
-      color: rgba(255,255,255,0.65);
-      max-width: 520px;
-      margin: 0 auto 32px;
-      line-height: 1.6;
-    }
-    .hero-meta {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.5px;
-    }
-    .hero-meta span { display: flex; align-items: center; gap: 6px; }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    .intro-section { padding: 56px 0 0; }
-    .intro-lead {
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.65;
-      color: var(--ink);
-      border-left: 3px solid var(--gold);
-      padding-left: 24px;
-      margin-bottom: 32px;
-    }
-    .intro-section p {
-      color: #2d3748;
-      margin-bottom: 20px;
-    }
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 52px 0 40px;
-    }
-    .section-divider span {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .section-divider::before, .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .tips-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-      padding-bottom: 16px;
-    }
-    .tip-card {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-    .tip-number {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 4px;
-    }
-    .tip-num-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .tip-num-line {
-      width: 1px;
-      flex: 1;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      margin-top: 6px;
-      min-height: 20px;
-    }
-    .tip-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 21px;
-      font-weight: 600;
-      color: var(--sky);
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-    .tip-body p {
-      color: #2d3748;
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: 12px;
-    }
-    .tip-body p:last-child { margin-bottom: 0; }
-    .tip-highlight {
-      display: inline;
-      background: var(--accent-light);
-      color: var(--sky-mid);
-      font-style: italic;
-      padding: 1px 4px;
-      border-radius: 3px;
-    }
-    .callout {
-      background: var(--sky);
-      color: #fff;
-      border-radius: 6px;
-      padding: 28px 32px;
-      margin: 48px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .callout::before {
-      content: '"';
-      position: absolute;
-      top: -20px; left: 20px;
-      font-family: 'Playfair Display', serif;
-      font-size: 140px;
-      color: rgba(255,255,255,0.06);
-      line-height: 1;
-    }
-    .callout p {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-style: italic;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.95);
-      position: relative;
-    }
-    .callout cite {
-      display: block;
-      margin-top: 14px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 1px;
-      color: var(--gold-light);
-      font-style: normal;
-    }
-    .checklist-section {
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 28px 32px;
-      margin: 40px 0;
-    }
-    .checklist-section h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      color: var(--sky);
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .checklist-section ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .checklist-section li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      color: #2d3748;
-      line-height: 1.55;
-    }
-    .checklist-section li::before {
-      content: '';
-      display: block;
-      min-width: 18px;
-      height: 18px;
-      border: 1.5px solid var(--gold);
-      border-radius: 3px;
-      margin-top: 2px;
-    }
-    .closing-section {
-      padding: 48px 0 64px;
-    }
-    .closing-section p {
-      color: #2d3748;
-      margin-bottom: 20px;
-      font-size: 17px;
-      line-height: 1.8;
-    }
-    .sign-off {
-      margin-top: 40px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .sign-avatar {
-      width: 52px; height: 52px;
-      background: var(--sky);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .sign-avatar svg { width: 28px; height: 28px; }
-    .sign-text p:first-child {
-      font-family: 'Playfair Display', serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-    .sign-text p:last-child {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.5px;
-    }
-    footer {
-      background: var(--sky);
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 28px 16px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-    }
-    @media (max-width: 600px) {
-      .tip-card { grid-template-columns: 36px 1fr; gap: 14px; }
-      .tip-num-text { font-size: 24px; }
-      .callout { padding: 22px 20px; }
-      .checklist-section { padding: 22px 18px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPL Check Ride Preparation Checklist - Arnav Pareek</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: linear-gradient(135deg, #003d82, #004e89);
+            --accent-color: #ff6b35;
+            --card-bg: white;
+        }
+
+        html.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: linear-gradient(135deg, #001a4d, #002966);
+            --accent-color: #ff8c42;
+            --card-bg: #2a2a2a;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.8; 
+            color: var(--text-color); 
+            background: var(--bg-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header { 
+            background: var(--header-bg); 
+            color: white; 
+            padding: 20px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav { 
+            display: flex; 
+            gap: 30px;
+        }
+
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            transition: 0.3s; 
+        }
+
+        nav a:hover { 
+            color: var(--accent-color); 
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: bold;
+            margin-right: 30px;
+        }
+
+        .dark-mode-toggle {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: var(--accent-color);
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+
+        .hero { 
+            background: var(--header-bg); 
+            color: white; 
+            padding: 60px 0; 
+            text-align: center; 
+        }
+
+        .hero h1 { 
+            font-size: 42px; 
+            margin-bottom: 15px; 
+        }
+
+        .hero p { 
+            font-size: 18px; 
+            margin-bottom: 10px; 
+        }
+
+        section { 
+            background: var(--card-bg); 
+            margin: 30px 0; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 { 
+            color: #003d82; 
+            border-bottom: 3px solid var(--accent-color); 
+            padding-bottom: 10px; 
+            margin-bottom: 20px; 
+            margin-top: 30px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #003d82;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #003d82;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p { 
+            margin-bottom: 15px; 
+        }
+
+        ul {
+            margin: 15px 0;
+            margin-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #003d82, #004e89);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #003d82, #004e89);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #ff8c42;
+            transform: translateY(-2px);
+        }
+
+        .print-btn {
+            background: white;
+            color: #003d82;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            background: #f0f0f0;
+        }
+
+        footer { 
+            background: #003d82; 
+            color: white; 
+            text-align: center; 
+            padding: 20px; 
+            margin-top: 50px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .checklist-item {
+            background: var(--bg-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .checklist-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        @media print {
+            header, footer, .download-section, .back-link {
+                display: none;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            section {
+                background: white;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-runway">
-      <span></span><span></span><span></span><span></span>
+
+<header>
+    <div>
+        <div class="logo">✈️ Arnav Pareek</div>
     </div>
-    <div class="hero-tag">Flight Training &nbsp;·&nbsp; CPL Series</div>
-    <h1>CPL Check Ride Tips:<br/><em>What I Learned</em></h1>
-    <p class="hero-sub">After months of training, countless sim hours, and more than a few sleepless nights — I finally sat in that left seat for my Commercial check ride. Here's everything I wish someone had told me.</p>
-    <div class="hero-meta">
-      <span>✦ 8 min read</span>
-      <span>✦ CPL Aspirants</span>
-      <span>✦ Real Experience</span>
-    </div>
-  </header>
-  <main>
-    <div class="container">
-      <section class="intro-section">
-        <p class="intro-lead">The morning of my Commercial Pilot License check ride, I remember sitting in the briefing room with a knot in my stomach the size of a turbine engine. Every maneuver I'd practiced, every ATC phraseology I'd drilled — it all seemed to blur together.</p>
-        <p>I passed. But what I took away from that experience goes far beyond a certificate. I learned things about preparation, mindset, and performance under pressure that no ground school lesson ever truly taught me. If you're gearing up for your CPL check ride, this is the honest, first-hand guide I wish I had.</p>
-        <p>These aren't textbook tips. These are the real things that made the difference on my actual check ride day.</p>
-      </section>
-      <div class="section-divider"><span>The Tips</span></div>
-      <div class="tips-grid">
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">01</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>Know Your ACS Like You Know Your Name</h3>
-            <p>The Airman Certification Standards document is not something to skim the night before. It is your entire roadmap. I printed mine, highlighted it, and taped specific tolerances to my kneeboard. On my check ride, the examiner asked me to describe the standards for a chandelle — and I didn't hesitate for a second.</p>
-            <p>Know the tolerances cold: altitude ±100 ft, airspeed ±10 kts, heading ±10°. Internalise them. <span class="tip-highlight">The examiner isn't testing if you can fly — they're testing if you know the standard you're flying to.</span></p>
-          </div>
+    <nav>
+        <a href="index.html#tools">Back to Tools</a>
+        <a href="index.html">Home</a>
+    </nav>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+</header>
+
+<div class="hero">
+    <h1>CPL Check Ride Preparation Checklist</h1>
+    <p>Your Complete Guide to Passing Your Commercial Pilot Check Ride</p>
+</div>
+
+<div class="container">
+    
+    <section>
+        <div class="download-section">
+            <h3 style="color: white; border: none; margin-top: 0;">📥 Download This Checklist</h3>
+            <button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
+            <a href="javascript:void(0)" class="download-btn" onclick="downloadChecklist()">⬇️ Download as PDF</a>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">02</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>The Oral Exam Will Surprise You — Be Ready to Think, Not Recite</h3>
-            <p>I over-prepared facts and under-prepared reasoning. My examiner didn't ask "what is the definition of a commercial pilot." He asked me things like: "You're cruising at 9,500 ft and notice a slow fuel imbalance. Walk me through your decision-making." He wanted to see a pilot, not a parrot.</p>
-            <p>Study your systems deeply, not just surface definitions. Practice explaining why things work the way they do. Talk through scenarios out loud with your instructor — that muscle memory of talking and thinking simultaneously is priceless when nerves hit.</p>
-          </div>
+
+        <a href="index.html#tools" class="back-link">← Back to Tools</a>
+
+        <h2>SECTION 1: PHYSICAL PREPARATION (3 Days Before)</h2>
+        
+        <div class="checklist-item">
+            <h4>☐ Sleep at least 7 hours (non-negotiable)</h4>
+            <p><strong>Why it matters:</strong> A fatigued brain flying a commercial maneuver is completely different from a rested one. This is not negotiable.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Go to bed early (3 nights before)</li>
+                <li>Avoid screens 1 hour before bed</li>
+                <li>Aim for 7-8 hours minimum</li>
+            </ul>
+            <div class="tip-box">💡 I slept 8 hours the night before my check ride. Best decision ever.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">03</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>Treat the Examiner Like a First Officer, Not a Judge</h3>
-            <p>This was the single biggest mindset shift I made. I stopped thinking of the examiner as someone grading me and started treating him as a safety crew member on a real flight. I narrated my thought process. I called out traffic. I used proper phraseology naturally — not because I was performing, but because that's what you do as a commercial pilot.</p>
-            <p>When I got slightly high on final approach, I didn't panic. I calmly said, "I'm a little high, going to add one notch of flap and adjust the descent rate." He nodded. That's the commercial pilot attitude they're looking for.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Eat a proper meal</h4>
+            <p><strong>Why it matters:</strong> Your brain and body need fuel. Hungry pilots fly poorly.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Eat balanced meals (protein, carbs, veggies)</li>
+                <li>Avoid heavy foods that make you sluggish</li>
+                <li>Eat on time (don't skip meals)</li>
+            </ul>
+            <div class="tip-box">💡 I had oatmeal with fruit and coffee 2 hours before my check ride. Perfect fuel.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">04</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>Master the Commercial-Only Maneuvers Until They're Boring</h3>
-            <p>Chandelles, lazy eights, eights-on-pylons, steep spirals — these are the maneuvers that separate the CPL from the PPL. I practiced each one until I could fly them without conscious effort. By the time I reached my check ride, chandelles felt as natural as a normal turn.</p>
-            <p><span class="tip-highlight">If a maneuver still demands your full concentration to set up, you haven't practised it enough.</span> Aim for the point where your brain is free to also monitor traffic, engine instruments, and airspace while executing.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Hydrate well throughout the day</h4>
+            <p><strong>Why it matters:</strong> Dehydration causes brain fog, anxiety, and poor decision-making.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Drink water consistently (not all at once)</li>
+                <li>Avoid excessive energy drinks</li>
+                <li>Bring water bottle to airport</li>
+            </ul>
+            <div class="tip-box">💡 I drank ~2 liters of water the day before. Felt sharp.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">05</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>Manage Your Energy, Not Just Your Aircraft</h3>
-            <p>The night before my check ride I slept reasonably well — not perfectly, but enough. I ate a proper meal that morning. I arrived at the airport 45 minutes early, preflighted slowly and deliberately, and spent 10 quiet minutes just reviewing the route in my mind. No cramming. No last-minute flashcard sessions.</p>
-            <p>A fatigued, hungry, stressed brain flying a commercial maneuver is a different aircraft entirely from a rested, calm one. Treat your physical and mental preparation with the same seriousness you give your aircraft preflight.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Avoid excessive caffeine</h4>
+            <p><strong>Why it matters:</strong> Too much caffeine = jitters, anxiety, poor focus. Bad combo during check ride.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Limit to 1-2 cups of coffee/tea</li>
+                <li>Avoid energy drinks the day before</li>
+                <li>No caffeine after lunch</li>
+            </ul>
+            <div class="tip-box">💡 Normal coffee is fine. Just don't overdo it.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">06</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>It Is Okay — and Professional — to Say "I Don't Know"</h3>
-            <p>I was asked a regulation question during the oral that I genuinely wasn't 100% sure about. My instinct was to guess and dress it up. Instead I said: "I want to be precise on that — can I look it up in the FAR/AIM?" The examiner actually smiled. He said most applicants guess and get it wrong. Looking it up correctly is the professional move.</p>
-            <p>Commercial pilots operate in a world where guessing has consequences. Demonstrating you know how to find accurate information is itself a skill being evaluated.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Do light exercise (walking, stretching)</h4>
+            <p><strong>Why it matters:</strong> Exercise reduces anxiety and clears your head. Light movement is key (not intense).</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>20-30 minute walk</li>
+                <li>Stretching routine</li>
+                <li>Light yoga</li>
+                <li>Nothing strenuous</li>
+            </ul>
+            <div class="tip-box">💡 I took a 30-minute walk the afternoon before. Cleared my head completely.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">07</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>Brief Yourself Before Every Maneuver</h3>
-            <p>Before each commercial maneuver, I quietly briefed myself: entry altitude, entry airspeed, configuration, recovery criteria. It takes five seconds and it transforms a reactive recovery into a structured execution. My instructor taught me this and I thought it was overkill — until the check ride, when I was grateful for every second of that mental reset between tasks.</p>
-            <p>The examiner will see you thinking deliberately. That is not weakness. That is command authority.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Arrive at airport 45 minutes early</h4>
+            <p><strong>Why it matters:</strong> Rushing = stress. Early arrival = calm, collected mindset.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Plan your route to airport</li>
+                <li>Leave early to avoid traffic</li>
+                <li>Arrive with time to spare</li>
+                <li>Do NOT rush through preflight</li>
+            </ul>
+            <div class="tip-box">💡 I arrived 45 minutes early. Preflighted slowly and deliberately. No stress.</div>
         </div>
-        <div class="tip-card">
-          <div class="tip-number"><span class="tip-num-text">08</span><div class="tip-num-line"></div></div>
-          <div class="tip-body">
-            <h3>The Soft-Field and Short-Field Landings Matter More Than You Think</h3>
-            <p>I had logged hundreds of landings. I thought the soft-field landing would be the easy part. I was wrong. The examiner will watch for every nuance — nose attitude during the flare, holding back pressure after touchdown, using full aileron into a simulated crosswind. Don't practice these once in a while. Practice them every single flight in your final weeks.</p>
-            <p><span class="tip-highlight">A beautiful chandelle followed by a sloppy soft-field landing is a check ride failure waiting to happen.</span> Landings are where you demonstrate that commercial-level aircraft control.</p>
-          </div>
+
+        <div class="checklist-item">
+            <h4>☐ Preflight slowly and deliberately</h4>
+            <p><strong>Why it matters:</strong> Rushing preflight causes you to miss things. Slow, methodical preflight shows the examiner your standard.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Walk around the aircraft slowly</li>
+                <li>Use your preflight checklist from the POH</li>
+                <li>Check every item carefully</li>
+                <li>Narrate what you're checking</li>
+            </ul>
+            <div class="tip-box">💡 My examiner watched my preflight. Slow, deliberate checking impressed him.</div>
         </div>
-      </div>
-      <blockquote class="callout">
-        <p>The check ride doesn't test whether you can fly well on your best day. It tests whether you fly like a professional on a completely ordinary one.</p>
-        <cite>— Something my examiner told me after I passed</cite>
-      </blockquote>
-      <div class="checklist-section">
-        <h4>Day-Before Checklist</h4>
+
+        <h2>SECTION 2: MENTAL PREPARATION (2 Days Before)</h2>
+        
+        <div class="checklist-item">
+            <h4>☐ Review ACS tolerances for every required task</h4>
+            <p><strong>Why it matters:</strong> The Airman Certification Standards (ACS) is your ENTIRE roadmap. Know tolerances cold.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Print your ACS document</li>
+                <li>Highlight all tolerance standards</li>
+                <li>Memorize: Altitude ±100 ft, Airspeed ±10 kts, Heading ±10°, Bank ±5°</li>
+                <li>Tape tolerances to your kneeboard</li>
+            </ul>
+            <div class="tip-box">💡 I taped tolerances to my kneeboard. Examiner was impressed with my knowledge.</div>
+        </div>
+
+        <div class="checklist-item">
+            <h4>☐ Study systems and procedures thoroughly</h4>
+            <p><strong>Why it matters:</strong> The oral exam will ask you to EXPLAIN systems, not just define them.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Study your aircraft's systems deeply</li>
+                <li>Understand WHY things work the way they do</li>
+                <li>Be able to explain to a non-pilot</li>
+                <li>Practice explaining out loud</li>
+            </ul>
+            <div class="tip-box">💡 Examiner asked me to walk through fuel imbalance scenarios. I had to THINK, not memorize.</div>
+        </div>
+
+        <div class="checklist-item">
+            <h4>☐ Brief emergency procedures</h4>
+            <p><strong>Why it matters:</strong> You need to know what to do if things go wrong. This builds confidence.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Read emergency section of POH</li>
+                <li>Know engine failure procedures</li>
+                <li>Know systems failures procedures</li>
+                <li>Practice saying them out loud</li>
+            </ul>
+            <div class="tip-box">💡 I briefed emergency procedures calmly. It reduced my anxiety significantly.</div>
+        </div>
+
+        <div class="checklist-item">
+            <h4>☐ Visualize maneuvers</h4>
+            <p><strong>Why it matters:</strong> Mental practice is as important as flying. Visualization reduces anxiety and improves performance.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Close your eyes and imagine flying perfectly</li>
+                <li>Feel the airplane moving</li>
+                <li>Imagine successful completion</li>
+                <li>Do this 5-10 minutes per day</li>
+            </ul>
+            <div class="tip-box">💡 I visualized a perfect chandelle every night. By check ride, it felt automatic.</div>
+        </div>
+
+        <div class="checklist-item">
+            <h4>☐ Do a final mock oral with your instructor</h4>
+            <p><strong>Why it matters:</strong> This is your dress rehearsal. It shows you what to expect.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Schedule 2-hour mock oral session</li>
+                <li>Have your instructor ask random questions</li>
+                <li>Don't let them go easy</li>
+                <li>Get feedback on what to improve</li>
+            </ul>
+            <div class="tip-box">💡 My mock oral was tough. But it made the real thing feel easy.</div>
+        </div>
+
+        <h2>SECTION 3: AIRCRAFT PREPARATION (2 Days Before)</h2>
+        
+        <div class="checklist-item">
+            <h4>☐ Confirm AROW documents are present and current</h4>
+            <p><strong>Why it matters:</strong> Without these, you cannot fly legally. The examiner will check.</p>
+            <strong>Documents needed:</strong>
+            <ul>
+                <li>Airworthiness Certificate (current)</li>
+                <li>Registration Certificate (current)</li>
+                <li>Operating Limitations (POH or AFM)</li>
+                <li>Weight & Balance (current)</li>
+            </ul>
+            <div class="tip-box">💡 I confirmed AROW 2 days before and 1 day before. No surprises.</div>
+        </div>
+
+        <div class="checklist-item">
+            <h4>☐ Test all avionics equipment thoroughly</h4>
+            <p><strong>Why it matters:</strong> Non-functioning avionics = problems during flight test.</p>
+            <strong>How to do it:</strong>
+            <ul>
+                <li>Test radio (both comm and nav)</li>
+                <li>Test autopilot and GPS/moving map</li>
+                <li>Test backup instruments and lights</li>
+                <li>Test each system twice</li>
+            </ul>
+            <div class="tip-box">💡 I tested all avionics the day before. Found one radio acting weird and fixed it.</div>
+        </div>
+
+        <h2>SECTION 4: DAY-OF PREPARATION (Check Ride Day)</h2>
+        
+        <div class="checklist-item">
+            <h4>☐ Pack all required documents</h4>
+            <p><strong>Why it matters:</strong> You cannot do a check ride without legal documents.</p>
+            <strong>Documents to pack:</strong>
+            <ul>
+                <li>✓ Pilot Certificate (current)</li>
+                <li>✓ Medical Certificate (current)</li>
+                <li>✓ Government-issued Photo ID</li>
+                <li>✓ Logbook and Endorsements</li>
+            </ul>
+            <div class="tip-box">💡 I packed everything night before and checked again morning-of. Zero stress.</div>
+        </div>
+
+        <h2>BONUS TIPS FOR SUCCESS</h2>
+        
+        <h3>General Tips:</h3>
         <ul>
-          <li>Review ACS tolerances for every required task</li>
-          <li>Confirm aircraft documents: AROW + weight & balance + performance charts</li>
-          <li>Check NOTAMs, TFRs, and weather for the check ride area</li>
-          <li>Confirm your logbook hours meet all eligibility requirements</li>
-          <li>Sleep at least 7 hours — non-negotiable</li>
-          <li>Pack your pilot certificate, medical, photo ID, and endorsements</li>
-          <li>Prepare a full cross-country flight plan as practice</li>
-          <li>Brief yourself on emergency procedures once more, calmly</li>
+            <li>✓ Sleep well (most important)</li>
+            <li>✓ Stay calm (easier said than done, but possible)</li>
+            <li>✓ Fly the plane first (always)</li>
+            <li>✓ Don't memorize (understand instead)</li>
+            <li>✓ Ask for clarification (professionalism)</li>
+            <li>✓ Be yourself (not fake)</li>
         </ul>
-      </div>
-      <section class="closing-section">
-        <div class="section-divider"><span>Final Approach</span></div>
-        <p>When I walked out of that debriefing room with a temporary certificate in hand, the relief wasn't what I expected. It wasn't euphoria. It was a quiet, solid confidence — the kind that only comes from knowing you performed to a real standard.</p>
-        <p>The CPL check ride is demanding by design. It should be. The certificate you earn at the end represents the authority to carry passengers for compensation. That's a responsibility worth taking seriously from day one of your training.</p>
-        <p>My biggest piece of advice? Don't train to pass a check ride. Train to be the pilot the ACS describes — and the check ride will take care of itself.</p>
-        <p>Clear skies to everyone working toward this goal. You've got this.</p>
-        <div class="sign-off">
-          <div class="sign-avatar">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="14" cy="9" r="5" fill="rgba(255,255,255,0.8)"/>
-              <path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M2 16l5-2 3 4" stroke="#c8922a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="sign-text">
-            <p>Arnav Pareek</p>
-            <p>Commercial Pilot &nbsp;·&nbsp; Aviation Content Creator</p>
-          </div>
+
+        <h3>Common Mistakes to Avoid:</h3>
+        <ul>
+            <li>✗ Rushing preflight</li>
+            <li>✗ Over-studying last minute</li>
+            <li>✗ Staying up late night before</li>
+            <li>✗ Being defensive with examiner</li>
+            <li>✗ Guessing instead of asking</li>
+            <li>✗ Forgetting to fly the airplane</li>
+            <li>✗ Over-communicating on radio</li>
+        </ul>
+
+        <div class="tip-box" style="margin-top: 30px; border-left: 4px solid var(--accent-color);">
+            <h3 style="color: white; border: none; margin-top: 0;">Final Thoughts</h3>
+            <p style="color: white; margin: 0;">
+                "The check ride doesn't test whether you can fly well on your best day. It tests whether you fly like a professional on a completely ordinary one."
+            </p>
+            <p style="color: white; margin-top: 10px;">
+                Train to be the pilot the ACS describes — and the check ride will take care of itself.
+            </p>
         </div>
-      </section>
-    </div>
-  </main>
-  <footer>
-    <p>© 2026 &nbsp;·&nbsp; All flights. All lessons. All written with love for aviation.</p>
-  </footer>
+
+        <p style="margin-top: 40px; text-align: center; color: #666; font-size: 14px; border-top: 1px solid #ddd; padding-top: 20px;">
+            <strong>Created by:</strong> Arnav Pareek, Commercial Pilot<br>
+            <strong>Last Updated:</strong> March 2026<br><br>
+            <em>Use this checklist to prepare for your CPL check ride. Good luck! ✈️</em>
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 Arnav Pareek | Aviation Content Creator & CPL</p>
+</footer>
+
+<script>
+function toggleDarkMode() {
+    const html = document.documentElement;
+    html.classList.toggle('dark-mode');
+    
+    if (html.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'true');
+    } else {
+        localStorage.setItem('darkMode', 'false');
+    }
+}
+
+function downloadChecklist() {
+    alert('PDF download feature coming soon! For now, you can click "Print to PDF" to save as PDF.');
+}
+
+window.addEventListener('load', function() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'true') {
+        document.documentElement.classList.add('dark-mode');
+    }
+});
+</script>
+
 </body>
 </html>
