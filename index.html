@@ -687,7 +687,7 @@
                 <h3 class="blog-title">CPL Check Ride Tips: What I Learned</h3>
                 <span class="blog-category">Flight Training</span>
                 <p class="blog-preview">After months of training and countless sim hours, I finally sat for my Commercial check ride. Here's everything I wish someone had told me - 8 real, actionable tips from my experience...</p>
-                <a href="cpl-checklist.html" class="blog-read-more">Read Full Article →</a>
+                <a href="cpl-article.html" class="blog-read-more">Read Full Article →</a>
             </div>
         </div>
     </section>
@@ -765,19 +765,19 @@
         <h2>🏆 Certifications & Licenses</h2>
         <div class="cert-grid">
             <div class="cert-card">
-                <div class="cert-icon">���</div>
+                <div class="cert-icon">📜</div>
                 <div class="cert-title">Commercial Pilot License</div>
-                <div class="cert-status">✓ FAA Certified</div>
+                <div class="cert-status">✅ FAA Certified</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🎯</div>
                 <div class="cert-title">Instrument Rating</div>
-                <div class="cert-status">✓ Verified</div>
+                <div class="cert-status">✅ Verified</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🏥</div>
                 <div class="cert-title">First Class Medical</div>
-                <div class="cert-status">✓ Current</div>
+                <div class="cert-status">✅ Current</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🌐</div>
@@ -1042,126 +1042,4 @@ const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
 
 // ANIMATION 6: 3D Tilt on Aircraft Cards
-document.querySelectorAll('.aircraft-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-    });
-});
-
-// ANIMATION 7: Floating Form Labels
-document.querySelectorAll('input, textarea').forEach(input => {
-    const label = input.previousElementSibling;
-    
-    input.addEventListener('focus', () => {
-        if (label && label.classList.contains('floating')) {
-            label.classList.add('active');
-        }
-    });
-    
-    input.addEventListener('blur', () => {
-        if (label && label.classList.contains('floating') && !input.value) {
-            label.classList.remove('active');
-        }
-    });
-    
-    input.addEventListener('input', () => {
-        if (label && label.classList.contains('floating') && input.value) {
-            label.classList.add('active');
-        }
-    });
-});
-
-// ANIMATION 8: Navbar Active Link on Scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 60) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Scrolling Parallax Effect
-window.addEventListener('scroll', () => {
-    const particlesContainer = document.getElementById('particles-js');
-    if (particlesContainer) {
-        particlesContainer.style.transform = `translateY(${window.scrollY * 0.5}px)`;
-    }
-});
-
-// Carousel Functions
-let currentSlideIndex = 0;
-let carouselInterval;
-
-function showSlide(index) {
-    const slides = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    if (slides.length === 0) return;
-    
-    if (index >= slides.length) currentSlideIndex = 0;
-    if (index < 0) currentSlideIndex = slides.length - 1;
-    
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
-    
-    slides[currentSlideIndex].classList.add('active');
-    indicators[currentSlideIndex].classList.add('active');
-}
-
-function changeSlide(n) {
-    currentSlideIndex += n;
-    showSlide(currentSlideIndex);
-    resetCarouselTimer();
-}
-
-function currentSlide(n) {
-    currentSlideIndex = n;
-    showSlide(currentSlideIndex);
-    resetCarouselTimer();
-}
-
-function autoSlide() {
-    currentSlideIndex++;
-    showSlide(currentSlideIndex);
-}
-
-function resetCarouselTimer() {
-    clearInterval(carouselInterval);
-    carouselInterval = setInterval(autoSlide, 5000);
-}
-
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        showSlide(0);
-        carouselInterval = setInterval(autoSlide, 5000);
-    }, 500);
-});
-</script>
-
-</body>
-</html>
+document*
