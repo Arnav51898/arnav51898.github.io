@@ -28,11 +28,6 @@
     
     <title>Arnav Pareek - Commercial Pilot | CPL with Instrument Rating | Aviation Content</title>
     
-    <!-- External Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
     <style>
         :root {
             --bg-color: #f4f4f4;
@@ -71,9 +66,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
-            background: rgba(0, 61, 130, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         nav { 
             display: flex; 
@@ -96,25 +88,9 @@
             color: white; 
             text-decoration: none; 
             transition: 0.3s; 
-            position: relative;
-            padding-bottom: 5px;
         }
         nav a:hover { 
             color: var(--accent-color); 
-        }
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-color);
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from { width: 0; }
-            to { width: 100%; }
         }
         
         .dark-mode-toggle {
@@ -141,19 +117,6 @@
             color: white; 
             padding: 80px 0; 
             text-align: center; 
-            position: relative;
-            overflow: hidden;
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
         }
         .hero h1 { 
             font-size: 48px; 
@@ -163,37 +126,12 @@
             font-size: 18px; 
             margin-bottom: 15px; 
         }
-        .plane-animation {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            font-size: 40px;
-            z-index: 3;
-            opacity: 0.8;
-        }
-        .contrail {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            z-index: 1;
-        }
         section { 
             background: var(--card-bg); 
             margin: 30px 0; 
             padding: 30px; 
             border-radius: 8px; 
             box-shadow: 0 0 10px var(--card-shadow);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         h2 { 
             color: #003d82; 
@@ -221,8 +159,6 @@
             border-radius: 5px; 
             text-align: center; 
             border-left: 4px solid var(--accent-color);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
         }
         .card h3 { 
             color: #003d82; 
@@ -239,9 +175,7 @@
             padding: 15px; 
             border-radius: 5px; 
             text-align: center; 
-            font-weight: bold;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
+            font-weight: bold; 
         }
         .social { 
             display: flex; 
@@ -282,21 +216,6 @@
             margin-bottom: 8px;
             font-weight: bold;
             color: #003d82;
-            position: relative;
-            height: 20px;
-        }
-        label.floating {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            transform: translateY(0);
-            opacity: 1;
-        }
-        label.floating.active {
-            transform: translateY(-25px) scale(0.85);
-            opacity: 0.8;
         }
         input, textarea {
             width: 100%;
@@ -347,8 +266,6 @@
             border-radius: 8px;
             text-align: center;
             border: 2px solid var(--accent-color);
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .stat-label {
@@ -397,10 +314,6 @@
             text-align: center;
             box-shadow: 0 4px 15px var(--card-shadow);
             transition: transform 0.3s;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            perspective: 1000px;
-            transform-style: preserve-3d;
         }
 
         .aircraft-card:hover {
@@ -436,8 +349,6 @@
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .cert-icon {
@@ -470,8 +381,6 @@
             border-left: 4px solid var(--accent-color);
             box-shadow: 0 2px 8px var(--card-shadow);
             transition: transform 0.3s, box-shadow 0.3s;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .blog-card:hover {
@@ -626,28 +535,24 @@
     <nav>
         <div class="logo">✈️ Arnav Pareek</div>
         <ul>
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#blog" class="nav-link">Blog</a></li>
-            <li><a href="map.html" class="nav-link">Map</a></li>
-            <li><a href="#stats" class="nav-link">Statistics</a></li>
-            <li><a href="#aircraft" class="nav-link">Aircraft</a></li>
-            <li><a href="#tools" class="nav-link">Tools</a></li>
-            <li><a href="#experience" class="nav-link">Experience</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="#stats">Statistics</a></li>
+            <li><a href="#aircraft">Aircraft</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
 </header>
 
-<div class="hero" id="home">
-    <div id="particles-js"></div>
-    <div class="plane-animation" id="plane">✈️</div>
-    <div class="hero-content">
-        <h1>Arnav Pareek</h1>
-        <p id="typewriter"></p>
-        <p>Aviation Content Creator | Flight Educator</p>
-    </div>
+<div class="hero">
+    <h1>Arnav Pareek</h1>
+    <p>✈️ Commercial Pilot | CPL with Instrument Rating</p>
+    <p>Aviation Content Creator | Flight Educator</p>
 </div>
 
 <div class="container">
@@ -687,7 +592,7 @@
                 <h3 class="blog-title">CPL Check Ride Tips: What I Learned</h3>
                 <span class="blog-category">Flight Training</span>
                 <p class="blog-preview">After months of training and countless sim hours, I finally sat for my Commercial check ride. Here's everything I wish someone had told me - 8 real, actionable tips from my experience...</p>
-                <a href="cpl-article.html" class="blog-read-more">Read Full Article →</a>
+                <a href="cpl-checklist.html" class="blog-read-more">Read Full Article →</a>
             </div>
         </div>
     </section>
@@ -697,42 +602,42 @@
         <div class="stats-container">
             <div class="stat-card">
                 <div class="stat-label">Total Flight Hours</div>
-                <div class="stat-number" data-target="352">0</div>
+                <div class="stat-number">352</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 100%;"></div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Pilot in Command (PIC)</div>
-                <div class="stat-number" data-target="232.5">0</div>
+                <div class="stat-number">232.5</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 66%;"></div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Cross-Country Hours</div>
-                <div class="stat-number" data-target="72.4">0</div>
+                <div class="stat-number">72.4</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 21%;"></div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Instrument Hours</div>
-                <div class="stat-number" data-target="63.2">0</div>
+                <div class="stat-number">63.2</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 18%;"></div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Night Hours</div>
-                <div class="stat-number" data-target="18.6">0</div>
+                <div class="stat-number">18.6</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 5%;"></div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Simulator Hours</div>
-                <div class="stat-number" data-target="20.1">0</div>
+                <div class="stat-number">20.1</div>
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: 6%;"></div>
                 </div>
@@ -767,17 +672,17 @@
             <div class="cert-card">
                 <div class="cert-icon">📜</div>
                 <div class="cert-title">Commercial Pilot License</div>
-                <div class="cert-status">✅ FAA Certified</div>
+                <div class="cert-status">✓ FAA Certified</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🎯</div>
                 <div class="cert-title">Instrument Rating</div>
-                <div class="cert-status">✅ Verified</div>
+                <div class="cert-status">✓ Verified</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🏥</div>
                 <div class="cert-title">First Class Medical</div>
-                <div class="cert-status">✅ Current</div>
+                <div class="cert-status">✓ Current</div>
             </div>
             <div class="cert-card">
                 <div class="cert-icon">🌐</div>
@@ -861,22 +766,22 @@
         <h3 style="color: #003d82; margin-top: 30px; margin-bottom: 20px;">Send Me a Message</h3>
         <form onsubmit="sendEmail(event)">
             <div class="form-group">
-                <label for="name" class="floating">Name *</label>
+                <label for="name">Name *</label>
                 <input type="text" id="name" name="name" required>
             </div>
             
             <div class="form-group">
-                <label for="email" class="floating">Email *</label>
+                <label for="email">Email *</label>
                 <input type="email" id="email" name="email" required>
             </div>
             
             <div class="form-group">
-                <label for="phone" class="floating">Phone Number *</label>
+                <label for="phone">Phone Number *</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
             
             <div class="form-group">
-                <label for="message" class="floating">Message *</label>
+                <label for="message">Message *</label>
                 <textarea id="message" name="message" required></textarea>
             </div>
             
@@ -904,7 +809,6 @@
 </footer>
 
 <script>
-// Dark Mode Toggle
 function toggleDarkMode() {
     const html = document.documentElement;
     html.classList.toggle('dark-mode');
@@ -916,15 +820,6 @@ function toggleDarkMode() {
     }
 }
 
-// Load Dark Mode on Page Load
-window.addEventListener('load', function() {
-    const darkMode = localStorage.getItem('darkMode');
-    if (darkMode === 'true') {
-        document.documentElement.classList.add('dark-mode');
-    }
-});
-
-// Send Email
 function sendEmail(event) {
     event.preventDefault();
     
@@ -936,110 +831,64 @@ function sendEmail(event) {
     const mailtoLink = `mailto:arnavpareek9108@gmail.com?subject=New Contact from ${encodeURIComponent(name)}&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
     
     window.location.href = mailtoLink;
+    
     document.querySelector('form').reset();
     alert('Opening your email client... Your message details are ready to send!');
 }
 
-// ANIMATION 1: Typewriter Effect
-new Typed('#typewriter', {
-    strings: ['✈️ Commercial Pilot | CPL with Instrument Rating'],
-    typeSpeed: 50,
-    startDelay: 500,
-    showCursor: false
-});
+let currentSlideIndex = 0;
+let carouselInterval;
 
-// ANIMATION 2: Plane Flying Animation with Contrail
-function animatePlane() {
-    const plane = document.getElementById('plane');
-    const hero = document.querySelector('.hero');
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
     
-    gsap.to(plane, {
-        x: window.innerWidth - 40,
-        duration: 2.5,
-        ease: "power1.inOut",
-        repeat: -1,
-        onUpdate: function() {
-            const x = gsap.getProperty(plane, "x");
-            const y = Math.sin((x / window.innerWidth) * Math.PI) * 50;
-            plane.style.top = (100 + y) + 'px';
-            
-            // Create contrail
-            const contrail = document.createElement('div');
-            contrail.className = 'contrail';
-            contrail.style.left = (x + 20) + 'px';
-            contrail.style.top = (100 + y + 20) + 'px';
-            hero.appendChild(contrail);
-            
-            gsap.to(contrail, {
-                opacity: 0,
-                duration: 1,
-                onComplete: () => contrail.remove()
-            });
-        }
-    });
+    if (slides.length === 0) return;
+    
+    if (index >= slides.length) currentSlideIndex = 0;
+    if (index < 0) currentSlideIndex = slides.length - 1;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    slides[currentSlideIndex].classList.add('active');
+    indicators[currentSlideIndex].classList.add('active');
 }
-animatePlane();
 
-// ANIMATION 3: Particles.js Background
-particlesJS("particles-js", {
-    particles: {
-        number: { value: 30, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3, random: true },
-        size: { value: 3, random: true },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 0.5, direction: "top", random: false }
+function changeSlide(n) {
+    currentSlideIndex += n;
+    showSlide(currentSlideIndex);
+    resetCarouselTimer();
+}
+
+function currentSlide(n) {
+    currentSlideIndex = n;
+    showSlide(currentSlideIndex);
+    resetCarouselTimer();
+}
+
+function autoSlide() {
+    currentSlideIndex++;
+    showSlide(currentSlideIndex);
+}
+
+function resetCarouselTimer() {
+    clearInterval(carouselInterval);
+    carouselInterval = setInterval(autoSlide, 5000);
+}
+
+window.addEventListener('load', function() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'true') {
+        document.documentElement.classList.add('dark-mode');
     }
+    
+    setTimeout(function() {
+        showSlide(0);
+        carouselInterval = setInterval(autoSlide, 5000);
+    }, 500);
 });
+</script>
 
-// ANIMATION 4: Scroll Parallax & Intersection Observer for Fade-In
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = `fadeInUp 0.8s ease forwards`;
-            const children = entry.target.querySelectorAll('.card, .skill, .stat-card, .aircraft-card, .cert-card, .blog-card');
-            children.forEach((child, index) => {
-                child.style.animationDelay = (index * 0.1) + 's';
-            });
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('section').forEach(section => {
-    observer.observe(section);
-});
-
-// ANIMATION 5: Stats Counter Animation
-const statsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-            entry.target.classList.add('animated');
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseFloat(stat.getAttribute('data-target'));
-                gsap.to(stat, {
-                    textContent: target,
-                    duration: 2,
-                    ease: "power2.out",
-                    snap: { textContent: 0.1 },
-                    onUpdate: function() {
-                        stat.textContent = Math.round(parseFloat(stat.textContent) * 10) / 10;
-                    }
-                });
-            });
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.getElementById('stats');
-if (statsSection) statsObserver.observe(statsSection);
-
-// ANIMATION 6: 3D Tilt on Aircraft Cards
-document*
+</body>
+</html>
