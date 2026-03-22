@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CPL Check Ride Tips: What I Learned | Arnav Pareek</title>
+  <meta name="description" content="After months of training and countless sim hours, I finally sat for my Commercial check ride. Here are 8 real, actionable tips from my experience."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0f1a;
+      --surface:   #111827;
+      --border:    rgba(255,255,255,0.07);
+      --amber:     #f59e0b;
+      --sky:       #7dd3fc;
+      --white:     #f1f5f9;
+      --muted:     #94a3b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 clamp(1.5rem, 6vw, 8rem) clamp(3rem, 7vw, 6rem);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(125,211,252,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(245,158,11,0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #0b0f1a 60%, #0b0f1a 100%);
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 18%; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.3) 30%, rgba(245,158,11,0.4) 60%, transparent 100%);
+    }
+
+    .stars {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 8%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 42% 22%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 5%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 73% 18%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 28%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 5%  35%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 33% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 32%, rgba(255,255,255,0.4) 0%, transparent 100%);
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--amber); border: 1px solid rgba(245,158,11,0.3);
+      padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag::before { content: '▸'; font-size: 0.6rem; }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
+      margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-title em { font-style: italic; color: var(--sky); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted);
+      max-width: 620px; line-height: 1.7; margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-meta {
+      display: flex; align-items: center; gap: 2rem;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--muted); letter-spacing: 0.05em;
+      animation: fadeUp 0.8s 0.3s ease both; flex-wrap: wrap;
+    }
+
+    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+    .author-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; right: clamp(1.5rem, 6vw, 8rem);
+      z-index: 2; display: flex; flex-direction: column;
+      align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase;
+      writing-mode: vertical-lr; animation: fadeIn 1s 0.8s ease both;
+    }
+
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 3rem;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 3rem); }
+
+    /* INTRO */
+    .intro-section { padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem); position: relative; z-index: 1; }
+
+    .intro-pullquote {
+      border-left: 3px solid var(--amber); padding: 1.2rem 1.8rem;
+      margin-bottom: 2.5rem; background: rgba(245,158,11,0.04);
+    }
+
+    .intro-pullquote p {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--white); line-height: 1.65;
+    }
+
+    .intro-text { font-size: 1.05rem; color: var(--muted); line-height: 1.9; }
+
+    /* TIPS */
+    .tips-section { padding-bottom: clamp(5rem, 10vw, 9rem); position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber);
+      margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
+    }
+
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .tip-card {
+      position: relative; padding: 2.5rem 2.5rem 2.5rem 5rem;
+      margin-bottom: 1.5rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 2px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .tip-card:nth-child(1)  { animation-delay: 0.05s; }
+    .tip-card:nth-child(2)  { animation-delay: 0.12s; }
+    .tip-card:nth-child(3)  { animation-delay: 0.19s; }
+    .tip-card:nth-child(4)  { animation-delay: 0.26s; }
+    .tip-card:nth-child(5)  { animation-delay: 0.33s; }
+    .tip-card:nth-child(6)  { animation-delay: 0.40s; }
+    .tip-card:nth-child(7)  { animation-delay: 0.47s; }
+    .tip-card:nth-child(8)  { animation-delay: 0.54s; }
+
+    .tip-card:hover { border-color: rgba(125,211,252,0.2); transform: translateY(-2px); }
+
+    .tip-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--sky) 0%, transparent 100%);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+
+    .tip-card:hover::before { opacity: 1; }
+
+    .tip-number {
+      position: absolute; left: 1.8rem; top: 2.4rem;
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      font-weight: 900; font-style: italic; color: rgba(125,211,252,0.2);
+      line-height: 1; user-select: none; transition: color 0.3s ease;
+    }
+
+    .tip-card:hover .tip-number { color: rgba(125,211,252,0.5); }
+
+    .tip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      font-weight: 700; color: var(--white); margin-bottom: 0.8rem; line-height: 1.35;
+    }
+
+    .tip-body { font-size: 0.97rem; color: var(--muted); line-height: 1.85; }
+    .tip-body strong { color: var(--white); font-weight: 500; }
+
+    .tip-callout {
+      margin-top: 1rem; padding: 0.75rem 1rem;
+      background: rgba(125,211,252,0.05); border-left: 2px solid rgba(125,211,252,0.4);
+      font-family: 'DM Mono', monospace; font-size: 0.8rem;
+      color: var(--sky); line-height: 1.6;
+    }
+
+    /* CLOSING */
+    .closing-section {
+      padding: clamp(3rem, 6vw, 5rem) 0 clamp(5rem, 10vw, 8rem);
+      border-top: 1px solid var(--border); position: relative; z-index: 1;
+    }
+
+    .closing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; font-style: italic; margin-bottom: 1.5rem; line-height: 1.2;
+    }
+
+    .closing-title span { color: var(--amber); }
+
+    .closing-text { font-size: 1.02rem; color: var(--muted); line-height: 1.9; max-width: 660px; }
+    .closing-text + .closing-text { margin-top: 1rem; }
+
+    .signature { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
+    .sig-line { width: 2.5rem; height: 1px; background: var(--amber); }
+    .sig-text { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--amber); letter-spacing: 0.08em; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 6vw, 8rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1;
+    }
+
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+    .footer-brand span { color: var(--sky); }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* AUTHOR CARD */
+    .author-card {
+      display: flex; align-items: center; gap: 1.8rem;
+      padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 6vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 1; flex-wrap: wrap;
+    }
+    .author-avatar {
+      width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #92400e, #f59e0b);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      font-weight: 900; color: #0b0f1a; border: 2px solid rgba(245,158,11,0.4);
+    }
+    .author-name {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      font-weight: 700; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .author-bio {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;
+      font-family: 'DM Mono', monospace; letter-spacing: 0.03em;
+    }
+    .author-socials { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+      border: 1px solid var(--border); text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.04em; color: var(--muted);
+      transition: all 0.2s ease; background: rgba(255,255,255,0.02);
+    }
+    .social-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .social-link:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .social-link.yt:hover  { border-color: #ff4444; color: #ff4444; }
+    .social-link.li:hover  { border-color: #0a66c2; color: #60a5fa; }
+    .social-link.ig:hover  { border-color: #e1306c; color: #f472b6; }
+    .social-link.x:hover   { border-color: #888;    color: var(--white); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    @media (max-width: 600px) {
+      .tip-card { padding: 2rem 1.5rem 2rem 4rem; }
+      .tip-number { left: 1.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars"></div>
+    <div class="scroll-hint">scroll</div>
+    <div class="hero-content">
+      <div class="hero-tag">CPL Journey &nbsp;·&nbsp; Check Ride</div>
+      <h1 class="hero-title">
+        CPL Check Ride Tips:<br>
+        <em>What I Learned</em>
+      </h1>
+      <p class="hero-sub">
+        After months of training and countless sim hours, I finally sat for my Commercial check ride.
+        Here's everything I wish someone had told me — 8 real, actionable tips from my experience.
+      </p>
+      <div class="hero-meta">
+        <span><span class="author-dot"></span> Arnav Pareek</span>
+        <span>CPL + IR &nbsp;·&nbsp; Delhi</span>
+        <span>8-min read</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="intro-section">
+        <div class="intro-pullquote">
+          <p>"The check ride doesn't test whether you're a perfect pilot.
+            It tests whether you're a safe, thinking one."</p>
+        </div>
+        <p class="intro-text">
+          The CPL check ride is one of those milestones that feels impossibly distant when you start training — and
+          then arrives faster than you expected. When I finally walked into that briefing room, I thought I was
+          prepared. And in many ways, I was. But the experience still taught me things that no ground school lesson
+          or instructor could quite convey. Below, I've distilled those lessons into eight practical tips. Whether
+          you're weeks away or deep in prep right now, I hope these save you some of the anxiety — and maybe a few
+          mistakes — that come with doing this for the first time.
+        </p>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="tips-section">
+        <div class="section-label">8 Tips from the Left Seat</div>
+
+        <div class="tip-card">
+          <div class="tip-number">01</div>
+          <h2 class="tip-title">Know the ACS — Not Just the Maneuvers</h2>
+          <p class="tip-body">
+            Most candidates study the maneuver descriptions and call it a day. Don't. <strong>The Airman Certification
+            Standards document is the examiner's checklist.</strong> Every single task, every required element,
+            every knowledge area they're allowed to test — it's all right there in black and white. Print it out.
+            Annotate it. Know exactly what "satisfactory performance" looks like by their definition, not yours.
+            When you understand the ACS, you stop guessing what the examiner wants and start flying to a known
+            standard. That shift alone removes a huge chunk of pre-ride anxiety.
+          </p>
+          <div class="tip-callout">
+            ▸ Download the FAA ACS for your certificate and read the Applicant Decision-Making section twice.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">02</div>
+          <h2 class="tip-title">Master the Oral Before You Touch the Plane</h2>
+          <p class="tip-body">
+            Here's the truth most candidates don't hear until it's too late: <strong>more check rides are
+            failed in the briefing room than in the air.</strong> The oral examination is long, probing, and
+            unscripted. The examiner will follow threads wherever they lead. If you stumble on weather theory,
+            expect ten more weather questions. If you're sharp on regulations, they'll move on quickly.
+            Prepare systems knowledge, weather, FARs, airspace, performance charts, and cross-country planning
+            until they feel like second nature — not a memorised script, but a genuine understanding you can talk
+            around from any angle.
+          </p>
+          <div class="tip-callout">
+            ▸ Do mock orals with your instructor. Have them probe your weakest areas mercilessly.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">03</div>
+          <h2 class="tip-title">Verbalise Everything — Loudly and Clearly</h2>
+          <p class="tip-body">
+            The examiner cannot read your mind. <strong>Every scan, every decision, every deviation from the
+            plan — narrate it.</strong> "I'm noticing a 200-foot deviation, correcting back to altitude."
+            "Traffic at two o'clock, 1000 above, no factor." This isn't performative; it demonstrates the
+            aeronautical decision-making that is baked into the ACS. When you think out loud, the examiner
+            sees a safe, aware pilot. When you go quiet and just fly, they wonder what's happening inside
+            your head — or whether anything is. The best pilots I've met talk their way through flights.
+            Practice that habit now.
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">04</div>
+          <h2 class="tip-title">Brief Your Examiner Like a Captain</h2>
+          <p class="tip-body">
+            Before you taxi out, treat the examiner the way you'd treat a first officer on day one.
+            <strong>Brief the flight: route, altitudes, expected weather, emergency procedures,
+            crew coordination expectations.</strong> Ask if they have any preferences for how the flight
+            flows. This immediately establishes CRM. It signals professional maturity. And it removes
+            ambiguity — you won't be surprised mid-flight by something they expected you to announce.
+            That confident pre-departure brief sets a tone that carries through the entire evaluation.
+          </p>
+          <div class="tip-callout">
+            ▸ "Before we depart, I'd like to brief the flight. Is that alright with you?" — just say that.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">05</div>
+          <h2 class="tip-title">Fly Like It's Just Another Training Flight</h2>
+          <p class="tip-body">
+            This is easier said than done, but it's the most important mental shift. <strong>The moment
+            you start flying for the examiner instead of flying the aircraft, performance degrades.</strong>
+            Your hands get tight. Corrections become jerky. You second-guess entries you've done a hundred
+            times. The check ride is not harder than your training flights — in fact, it's often smoother,
+            because the pressure sharpens your focus. Trust your muscle memory. Fly the numbers you know.
+            The examiner is there to observe, not intimidate. Treat the airplane like your aircraft and
+            the flight like your flight.
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">06</div>
+          <h2 class="tip-title">Know When to Make the PIC Call</h2>
+          <p class="tip-body">
+            Nothing signals Pilot-in-Command maturity more than <strong>making the hard call
+            before being asked.</strong> If weather is deteriorating on your cross-country leg,
+            divert. Say it out loud: "I'm not comfortable continuing with those conditions.
+            I'm diverting to an alternate." If a maneuver doesn't feel right in the setup, say
+            "I'm going to go around and reset." Examiners aren't judging the outcome as much as
+            the decision-making process. A pilot who recognises when something isn't right and acts
+            accordingly is exactly what a CPL certificate is meant to produce. Indecision, or worse —
+            pressing on when you shouldn't — is what fails check rides.
+          </p>
+          <div class="tip-callout">
+            ▸ SRM — Single-Pilot Resource Management. Know it. Live it. The examiner is watching for it.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">07</div>
+          <h2 class="tip-title">Rest, Eat, and Show Up Sharp</h2>
+          <p class="tip-body">
+            This sounds basic. It isn't. <strong>Cognitive performance under pressure drops
+            dramatically when you're sleep-deprived or hungry.</strong> I've seen candidates miss
+            easy questions during the oral simply because they stayed up until 2 AM reviewing notes
+            and arrived on empty. The night before your check ride: stop studying early, eat well,
+            sleep. The knowledge is already in your head — more cramming at midnight doesn't add to
+            it, it just adds fatigue. On check ride morning, eat a real breakfast. Arrive 20 minutes
+            early. Sit quietly. Breathe. You've done the work. Trust it.
+          </p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">08</div>
+          <h2 class="tip-title">Remember: The Examiner Wants You to Pass</h2>
+          <p class="tip-body">
+            This might be the most underrated tip on this list. <strong>DPEs are not adversaries.
+            They are experienced aviators who genuinely want to see you succeed.</strong> They've sat
+            where you're sitting. They know what a nervous candidate looks like on the first maneuver
+            before they find their groove. They will give you set-up time. They will ask leading
+            questions if you're on the right track but not articulating it cleanly. If you make a
+            mistake, acknowledge it calmly and correct it — that's exactly what a good pilot does.
+            Walking in with that mindset rather than dread changes everything about how you perform.
+          </p>
+          <div class="tip-callout">
+            ▸ If stuck on an oral question, say: "I'd like to look that up to give you an accurate answer." That's the correct response.
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="closing-section">
+        <h2 class="closing-title">Clear Skies <span>&</span> a Clean Logbook Entry</h2>
+        <p class="closing-text">
+          The CPL check ride is a rite of passage — one that demands everything you've put into training
+          and gives back more than just a certificate. It builds a kind of quiet confidence that's hard to
+          manufacture any other way. You learn that you can perform under real pressure, make real decisions,
+          and hold yourself to a professional standard.
+        </p>
+        <p class="closing-text">
+          If you're heading into your check ride soon: you're ready. Trust your preparation, fly your aircraft,
+          and enjoy the last flight before the letters after your name change. It's a remarkable feeling.
+          I'd love to hear how it goes.
+        </p>
+        <div class="signature">
+          <div class="sig-line"></div>
+          <span class="sig-text">— Arnav Pareek &nbsp;·&nbsp; CPL + IR &nbsp;·&nbsp; Delhi</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="author-card">
+        <div class="author-avatar">AP</div>
+        <div class="author-details">
+          <div class="author-name">Arnav Pareek</div>
+          <div class="author-bio">FAA Commercial Pilot · CPL + Instrument Rating · Aviation Content Creator · Delhi</div>
+          <div class="author-socials">
+            <a href="https://youtube.com/@aerovibes25" target="_blank" rel="noopener" class="social-link yt" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="https://www.linkedin.com/in/Arnav-Pareek-Pilot" target="_blank" rel="noopener" class="social-link li" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.5v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.8v20.4C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.8V1.8C24 .8 23.2 0 22.2 0z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://instagram.com/arnavpareek9108" target="_blank" rel="noopener" class="social-link ig" aria-label="Instagram (personal)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.3 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+              <span>@arnavpareek9108</span>
+            </a>
+            <a href="https://instagram.com/aero_vibes25" target="_blank" rel="noopener" class="social-link ig" aria-label="Instagram (aviation)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.3 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+              <span>@aero_vibes25</span>
+            </a>
+            <a href="https://x.com/ArnavPareek9108" target="_blank" rel="noopener" class="social-link x" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2h3.2l-7 8 8.2 10.8h-6.4l-5-6.6-5.8 6.6H2.2l7.5-8.5L1.8 2h6.6l4.6 6 5.2-6zm-1.1 17h1.8L6.8 3.8H4.9L17.1 19z"/></svg>
+              <span>@ArnavPareek9108</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-brand">Arnav Pareek</div>
+    <div class="footer-copy">arnav51898.github.io &nbsp;·&nbsp; Aviation &amp; Beyond</div>
+  </footer>
+
+</body>
+</html>
