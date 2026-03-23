@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IFR Currency vs Proficiency: What Actually Keeps You Safe | Arnav Pareek</title>
+  <meta name="description" content="Currency and proficiency are not the same. Here's the critical difference every IFR-rated pilot needs to understand—and why one could save your life."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0b0f1a;
+      --surface:   #111827;
+      --border:    rgba(255,255,255,0.07);
+      --amber:     #f59e0b;
+      --sky:       #7dd3fc;
+      --white:     #f1f5f9;
+      --muted:     #94a3b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 clamp(1.5rem, 6vw, 8rem) clamp(3rem, 7vw, 6rem);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(125,211,252,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(245,158,11,0.06) 0%, transparent 60%),
+        linear-gradient(180deg, #060a14 0%, #0b0f1a 60%, #0b0f1a 100%);
+      z-index: 0;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 18%; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(125,211,252,0.3) 30%, rgba(245,158,11,0.4) 60%, transparent 100%);
+    }
+
+    .stars {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 8%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 42% 22%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 5%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 73% 18%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 28%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 5%  35%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 33% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 32%, rgba(255,255,255,0.4) 0%, transparent 100%);
+    }
+
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--amber); border: 1px solid rgba(245,158,11,0.3);
+      padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-tag::before { content: '▸'; font-size: 0.6rem; }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
+      margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero-title em { font-style: italic; color: var(--sky); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--muted);
+      max-width: 620px; line-height: 1.7; margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-meta {
+      display: flex; align-items: center; gap: 2rem;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--muted); letter-spacing: 0.05em;
+      animation: fadeUp 0.8s 0.3s ease both; flex-wrap: wrap;
+    }
+
+    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+    .author-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); display: inline-block; }
+
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; right: clamp(1.5rem, 6vw, 8rem);
+      z-index: 2; display: flex; flex-direction: column;
+      align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase;
+      writing-mode: vertical-lr; animation: fadeIn 1s 0.8s ease both;
+    }
+
+    .scroll-hint::after {
+      content: ''; width: 1px; height: 3rem;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 3rem); }
+
+    /* INTRO */
+    .intro-section { padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem); position: relative; z-index: 1; }
+
+    .intro-pullquote {
+      border-left: 3px solid var(--amber); padding: 1.2rem 1.8rem;
+      margin-bottom: 2.5rem; background: rgba(245,158,11,0.04);
+    }
+
+    .intro-pullquote p {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--white); line-height: 1.65;
+    }
+
+    .intro-text { font-size: 1.05rem; color: var(--muted); line-height: 1.9; }
+
+    /* TIPS */
+    .tips-section { padding-bottom: clamp(5rem, 10vw, 9rem); position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber);
+      margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
+    }
+
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .tip-card {
+      position: relative; padding: 2.5rem 2.5rem 2.5rem 5rem;
+      margin-bottom: 1.5rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 2px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .tip-card:nth-child(1)  { animation-delay: 0.05s; }
+    .tip-card:nth-child(2)  { animation-delay: 0.12s; }
+    .tip-card:nth-child(3)  { animation-delay: 0.19s; }
+    .tip-card:nth-child(4)  { animation-delay: 0.26s; }
+    .tip-card:nth-child(5)  { animation-delay: 0.33s; }
+    .tip-card:nth-child(6)  { animation-delay: 0.40s; }
+
+    .tip-card:hover { border-color: rgba(125,211,252,0.2); transform: translateY(-2px); }
+
+    .tip-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--sky) 0%, transparent 100%);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+
+    .tip-card:hover::before { opacity: 1; }
+
+    .tip-number {
+      position: absolute; left: 1.8rem; top: 2.4rem;
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      font-weight: 900; font-style: italic; color: rgba(125,211,252,0.2);
+      line-height: 1; user-select: none; transition: color 0.3s ease;
+    }
+
+    .tip-card:hover .tip-number { color: rgba(125,211,252,0.5); }
+
+    .tip-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      font-weight: 700; color: var(--white); margin-bottom: 0.8rem; line-height: 1.35;
+    }
+
+    .tip-body { font-size: 0.97rem; color: var(--muted); line-height: 1.85; }
+    .tip-body strong { color: var(--white); font-weight: 500; }
+
+    .tip-callout {
+      margin-top: 1rem; padding: 0.75rem 1rem;
+      background: rgba(125,211,252,0.05); border-left: 2px solid rgba(125,211,252,0.4);
+      font-family: 'DM Mono', monospace; font-size: 0.8rem;
+      color: var(--sky); line-height: 1.6;
+    }
+
+    /* CLOSING */
+    .closing-section {
+      padding: clamp(3rem, 6vw, 5rem) 0 clamp(5rem, 10vw, 8rem);
+      border-top: 1px solid var(--border); position: relative; z-index: 1;
+    }
+
+    .closing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; font-style: italic; margin-bottom: 1.5rem; line-height: 1.2;
+    }
+
+    .closing-title span { color: var(--amber); }
+
+    .closing-text { font-size: 1.02rem; color: var(--muted); line-height: 1.9; max-width: 660px; }
+    .closing-text + .closing-text { margin-top: 1rem; }
+
+    .signature { margin-top: 3rem; display: flex; align-items: center; gap: 1.2rem; }
+    .sig-line { width: 2.5rem; height: 1px; background: var(--amber); }
+    .sig-text { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--amber); letter-spacing: 0.08em; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 6vw, 8rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1;
+    }
+
+    .footer-brand { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+    .footer-brand span { color: var(--sky); }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    /* AUTHOR CARD */
+    .author-card {
+      display: flex; align-items: center; gap: 1.8rem;
+      padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 6vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative; z-index: 1; flex-wrap: wrap;
+    }
+    .author-avatar {
+      width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #92400e, #f59e0b);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      font-weight: 900; color: #0b0f1a; border: 2px solid rgba(245,158,11,0.4);
+    }
+    .author-name {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      font-weight: 700; color: var(--white); margin-bottom: 0.25rem;
+    }
+    .author-bio {
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;
+      font-family: 'DM Mono', monospace; letter-spacing: 0.03em;
+    }
+    .author-socials { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+      border: 1px solid var(--border); text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.04em; color: var(--muted);
+      transition: all 0.2s ease; background: rgba(255,255,255,0.02);
+    }
+    .social-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .social-link:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .social-link.yt:hover  { border-color: #ff4444; color: #ff4444; }
+    .social-link.li:hover  { border-color: #0a66c2; color: #60a5fa; }
+    .social-link.ig:hover  { border-color: #e1306c; color: #f472b6; }
+    .social-link.x:hover   { border-color: #888;    color: var(--white); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    @media (max-width: 600px) {
+      .tip-card { padding: 2rem 1.5rem 2rem 4rem; }
+      .tip-number { left: 1.2rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="stars"></div>
+    <div class="scroll-hint">scroll</div>
+    <div class="hero-content">
+      <div class="hero-tag">IFR Mastery &nbsp;·&nbsp; Instrument Flying</div>
+      <h1 class="hero-title">
+        IFR Currency vs <em>Proficiency</em>
+      </h1>
+      <p class="hero-sub">
+        Currency and proficiency sound like the same thing. They're not. Here's the critical difference—and why one 
+        will keep you alive while the other might just make you legal.
+      </p>
+      <div class="hero-meta">
+        <span><span class="author-dot"></span> Arnav Pareek</span>
+        <span>CPL + IR &nbsp;·&nbsp; Delhi</span>
+        <span>10-min read</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="intro-section">
+        <div class="intro-pullquote">
+          <p>"You can be current but terrified, or expired but sharp. 
+            The FAA checks one. Your life depends on the other."</p>
+        </div>
+        <p class="intro-text">
+          If you hold an Instrument Rating, you've heard this phrase a thousand times: <strong>"You need to stay 
+          current."</strong> And it's true. But here's what most instructors don't belabor: currency is a legal minimum, 
+          not a performance standard. You can technically fly IFR approaches on your last day of currency with skills so 
+          rusty they'd alarm your examiner. Conversely, you could be technically expired but so sharp that your flying 
+          is objectively safer than someone who barely scraped currency last month. This article is about understanding 
+          that distinction—and more importantly, building proficiency that actually <em>keeps you safe</em> in real IFR 
+          conditions.
+        </p>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="tips-section">
+        <div class="section-label">6 Truths About Currency & Proficiency</div>
+
+        <div class="tip-card">
+          <div class="tip-number">01</div>
+          <h2 class="tip-title">Currency Is a Legal Line, Not a Safety Floor</h2>
+          <p class="tip-body">
+            The FAA says: <strong>6 approaches, holding procedures, and intercepting and tracking within 6 calendar 
+            months.</strong> Fly those 6 approaches, tick the box, you're legal to file IFR. But legal is not the same 
+            as <em>safe</em>. You could meet currency on approach 6 with shaky hands, poor scan discipline, and sloppy 
+            radio phraseology. The regulations don't say you have to fly those 6 approaches <em>well</em> — only that 
+            you do them. Proficiency, by contrast, is about flying those approaches so consistently that poor performance 
+            stands out to you as abnormal. A proficient pilot knows when they're off altitude, sloppy on an intercept, 
+            or fumbling with frequencies. A merely current pilot might not notice.
+          </p>
+          <div class="tip-callout">
+            ▸ Currency = legal. Proficiency = safe. Never confuse the two.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">02</div>
+          <h2 class="tip-title">You Lose Proficiency Before You Lose Currency</h2>
+          <p class="tip-body">
+            Here's the hard truth: <strong>IFR skills degrade faster than the 6-month clock.</strong> Research consistently 
+            shows that instrument approaches flown beyond 30 days without practice start to feel sloppy. By 60 days, most 
+            pilots show measurable performance decay — wider altitude deviations, slower scan, hesitation on 
+            decision-making. But you're still 4 months from currency expiration. This is where many pilots live: legally 
+            current but functionally rusty. They're flying in actual IMC thinking they're sharp when they're operating 
+            well below their demonstrated capability. The antidote isn't to wait until currency expires; it's to treat 
+            30-45 days as your <em>real</em> refresh interval.
+          </p>
+          <div class="tip-callout">
+            ▸ Plan approaches every 30 days, not every 6 months. Your skills will thank you.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">03</div>
+          <h2 class="tip-title">Currency Can Kill You In Actual IMC</h2>
+          <p class="tip-body">
+            This is where it gets real. <strong>A pilot with only currency-level skills and actual clouds outside is a 
+            pilot under stress.</strong> Your scan gets tighter. Decision-making slows. Radio phraseology becomes 
+            choppy. You're burning more mental energy just keeping the needles centered and remembering what ATC asked 
+            you to do. In actual IMC, the margin for error shrinks. A proficient pilot has automated enough of the basic 
+            flying that they have <em>cognitive bandwidth</em> for systems management, weather analysis, and contingency 
+            thinking. A current-only pilot is flying at their ceiling just keeping the airplane stable. Add an emergency, 
+            unexpected weather, or a missed approach, and suddenly that margin doesn't exist. The NTSB accident data bears 
+            this out: many IFR accidents involve pilots who were technically current but flying outside their true 
+            capability envelope.
+          </p>
+          <div class="tip-callout">
+            ▸ Currency in IMC is not insurance. It's permission to fly legally. Proficiency is what keeps you alive.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">04</div>
+          <h2 class="tip-title">Proficiency Requires Deliberate, Consistent Practice</h2>
+          <p class="tip-body">
+            You don't build proficiency by flying 6 random approaches in 6 months. <strong>Proficiency comes from 
+            structured, repeated practice on the same skills.</strong> This means: planning approaches every 30 days, 
+            choosing approaches that challenge your weaknesses (not just your strengths), flying with an instructor or 
+            safety pilot, and debriefing afterward. A proficient IFR pilot flies a structured approach hold once a month. 
+            They practice slow-flight near minimums. They brief unusual weather scenarios. They stay sharp on raw data 
+            flying. Currency-only pilots? They fly whatever approach is handy when they happen to go IFR, which might be 
+            an easy, familiar approach they've done a hundred times. That's not building proficiency. That's just staying 
+            legal.
+          </p>
+          <div class="tip-callout">
+            ▸ Schedule approaches like you schedule medical checkups — regular, deliberate, and documented.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">05</div>
+          <h2 class="tip-title">Recency Matters More Than You Think</h2>
+          <p class="tip-body">
+            There's a reason the regulation uses <em>calendar months</em> instead of flight hours: <em>time away from 
+            IFR flying damages your skills more than any other factor.</em> A pilot who flew 2 approaches a month for 
+            6 consecutive months is vastly sharper than a pilot who flew 12 approaches all in month 1 and then nothing 
+            for 5 months. <strong>Recency — flying approaches consistently throughout the period — is what separates 
+            proficiency from currency.</strong> The pilot with recency has reinforced neural pathways, practiced scan 
+            patterns monthly, and adjusted to recent changes in aircraft or approach procedure. The pilot flying all their 
+            hours upfront has to re-learn the scan in month 6. This is why some of the best IFR pilots are those who fly 
+            actual IMC regularly in their work — not because actual is better practice, but because it forces recency. 
+            If you're a seasonal flyer or fly actual only once or twice a year, you're setting yourself up for proficiency 
+            loss.
+          </p>
+          <div class="tip-callout">
+            ▸ Flying 1 approach every 2 weeks beats flying 12 approaches in one weekend, then nothing.
+          </div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-number">06</div>
+          <h2 class="tip-title">The Proficiency Conversation Matters Before You File</h2>
+          <p class="tip-body">
+            Here's a habit that separates prudent IFR pilots from merely legal ones: <strong>they have an honest 
+            conversation with themselves before filing.</strong> The question isn't "Am I current?" It's "Am I proficient 
+            for <em>this</em> flight, in <em>these</em> conditions, with <em>these</em> weather minimums, in 
+            <em>this</em> aircraft?" A pilot current on approaches in the 172 might not be proficient in a complex, 
+            pressurized twin-engine ship in icing. A pilot proficient on GPS approaches might be rusty on NDB reversals. 
+            A pilot sharp on VOR approaches might be weak on instrument markings in poor visibility. Proficiency is 
+            specific. Filing IFR means matching your actual demonstrated capability to the flight profile. Legal means 
+            checking a box.
+          </p>
+          <div class="tip-callout">
+            ▸ Before every IFR flight, ask: "What could go wrong? Am I sharp enough to handle it?"
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="closing-section">
+        <h2 class="closing-title">Stay Sharp, Stay <span>&</span> Safe</h2>
+        <p class="closing-text">
+          Currency is a regulation. Proficiency is a discipline. One is the FAA's job to enforce; the other is yours 
+          to build and maintain. The difference between them has likely saved lives, and it will likely cost some too. 
+          The pilots who live longest and fly best are not the ones asking "Am I current?" They're asking "Am I sharp?"
+        </p>
+        <p class="closing-text">
+          If you're IFR-rated, your real currency clock isn't 6 months. It's 30 days. Plan your approaches, fly them 
+          deliberately, and be honest about where your proficiency actually lives. The regulation gives you 6 months 
+          of rope. Don't use all of it.
+        </p>
+        <div class="signature">
+          <div class="sig-line"></div>
+          <span class="sig-text">— Arnav Pareek &nbsp;·&nbsp; CPL + IR &nbsp;·&nbsp; Delhi</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="author-card">
+        <div class="author-avatar">AP</div>
+        <div class="author-details">
+          <div class="author-name">Arnav Pareek</div>
+          <div class="author-bio">FAA Commercial Pilot · CPL + Instrument Rating · Aviation Content Creator · Delhi</div>
+          <div class="author-socials">
+            <a href="https://youtube.com/@aerovibes25" target="_blank" rel="noopener" class="social-link yt" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+              <span>YouTube</span>
+            </a>
+            <a href="https://www.linkedin.com/in/Arnav-Pareek-Pilot" target="_blank" rel="noopener" class="social-link li" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.5v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.8v20.4C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.8V1.8C24 .8 23.2 0 22.2 0z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://instagram.com/arnavpareek9108" target="_blank" rel="noopener" class="social-link ig" aria-label="Instagram (personal)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.3 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+              <span>@arnavpareek9108</span>
+            </a>
+            <a href="https://instagram.com/aero_vibes25" target="_blank" rel="noopener" class="social-link ig" aria-label="Instagram (aviation)">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.6 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.3 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0-2.2C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1.0 8.3 0 8.7 0 12s0 3.7.1 4.9C.3 21.3 2.7 23.7 7.1 23.9 8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9C23.7 2.7 21.3.3 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+              <span>@aero_vibes25</span>
+            </a>
+            <a href="https://x.com/ArnavPareek9108" target="_blank" rel="noopener" class="social-link x" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2h3.2l-7 8 8.2 10.8h-6.4l-5-6.6-5.8 6.6H2.2l7.5-8.5L1.8 2h6.6l4.6 6 5.2-6zm-1.1 17h1.8L6.8 3.8H4.9L17.1 19z"/></svg>
+              <span>@ArnavPareek9108</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-brand">Arnav Pareek</div>
+    <div class="footer-copy">arnav51898.github.io &nbsp;·&nbsp; Aviation &amp; Beyond</div>
+  </footer>
+
+</body>
+</html>
