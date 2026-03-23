@@ -144,7 +144,7 @@
             margin-left: 25px;
         }
 
-        li {
+        li{
             margin: 8px 0;
         }
 
@@ -165,6 +165,26 @@
             border-radius: 8px;
             text-align: center;
             margin: 30px 0;
+        }
+
+        .download-btn {
+            background: white;
+            color: #003d82;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
         }
 
         .print-btn {
@@ -213,8 +233,150 @@
             border-left: 3px solid var(--accent-color);
         }
 
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            color: #003d82;
+            margin: 0;
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-body p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #003d82;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px var(--accent-color);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .modal-buttons .submit-btn {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .modal-buttons .submit-btn:hover {
+            background: #003d82;
+        }
+
+        .modal-buttons .cancel-btn {
+            background: #999;
+            color: white;
+        }
+
+        .modal-buttons .cancel-btn:hover {
+            background: #666;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
         @media print {
-            header, footer, .download-section, .back-link {
+            header, footer, .download-section, .back-link, .modal {
                 display: none;
             }
             body {
@@ -224,6 +386,34 @@
             section {
                 background: white;
                 page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .download-btn, .print-btn {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
             }
         }
     </style>
@@ -251,6 +441,7 @@
     <section>
         <div class="download-section">
             <h3 style="color: white; border: none; margin-top: 0;">📥 Download This Checklist</h3>
+            <button class="download-btn" onclick="openEmailModal()">📥 Download as PDF</button>
             <button class="print-btn" onclick="window.print()">🖨️ Print to PDF</button>
         </div>
 
@@ -439,4 +630,124 @@
         <p style="margin-top: 40px; text-align: center; color: #666; font-size: 14px; border-top: 1px solid #ddd; padding-top: 20px;">
             <strong>Created by:</strong> Arnav Pareek, Commercial Pilot<br>
             <strong>Last Updated:</strong> March 2026<br><br>
-            <em>Use this checklist to prepare*
+            <em>Use this checklist to prepare for your CPL check ride. Good luck! ✈️</em>
+        </p>
+    </section>
+
+</div>
+
+<!-- EMAIL CAPTURE MODAL -->
+<div id="emailModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>📥 Get Your Checklist</h2>
+        </div>
+        <div class="modal-body">
+            <p>Enter your email to download the CPL Check Ride Preparation Checklist as PDF!</p>
+            <form id="emailForm" onsubmit="submitEmail(event)">
+                <div class="form-group">
+                    <label for="emailInput">Email Address *</label>
+                    <input type="email" id="emailInput" name="email" required placeholder="your@email.com">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="submit-btn">Download PDF</button>
+                    <button type="button" class="cancel-btn" onclick="closeEmailModal()">Cancel</button>
+                </div>
+                <div class="success-message" id="successMessage">
+                    ✅ Email submitted! Downloading your PDF...
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Arnav Pareek | CPL Check Ride Preparation Checklist</p>
+</footer>
+
+<script>
+    function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle('dark-mode');
+        
+        if (html.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            localStorage.setItem('darkMode', 'false');
+        }
+    }
+
+    function openEmailModal() {
+        document.getElementById('emailModal').classList.add('show');
+    }
+
+    function closeEmailModal() {
+        document.getElementById('emailModal').classList.remove('show');
+        document.getElementById('emailForm').reset();
+        document.getElementById('successMessage').classList.remove('show');
+    }
+
+    function submitEmail(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('emailInput').value;
+        const formURL = 'https://docs.google.com/forms/d/e/1FAIpQLSd0y44x4vV8jsWjV0FjGS5p6auaFe1ruugGJxTrADoDSOa2Fw/formResponse';
+        const formData = new FormData();
+        
+        // Google Form field ID for email (entry.725447602)
+        formData.append('entry.725447602', email);
+        
+        // Submit to Google Forms
+        fetch(formURL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        }).then(() => {
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Download PDF after 1 second
+            setTimeout(() => {
+                downloadPDF();
+                closeEmailModal();
+            }, 1000);
+        }).catch(error => {
+            console.log('Form submitted (cross-origin limitation)');
+            // Still download PDF even if there's a CORS error
+            setTimeout(() => {
+                downloadPDF();
+                closeEmailModal();
+            }, 1000);
+        });
+    }
+
+    function downloadPDF() {
+        // Create a link to download the PDF
+        const pdfUrl = 'cpl-checklist.pdf'; // Your PDF file name
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = 'CPL-Check-Ride-Preparation-Checklist.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    window.addEventListener('load', () => {
+        // Load dark mode preference
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('emailModal');
+        if (event.target === modal) {
+            closeEmailModal();
+        }
+    });
+</script>
+
+</body>
+</html>
