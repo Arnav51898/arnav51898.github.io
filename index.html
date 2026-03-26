@@ -26,6 +26,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://arnav51898.github.io/">
     
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3H90iVzVV9PH5EB+YtxQcUVMDWeO8i5PXg1kY4+wFJ0U7ZFYL33fVopts1F65mp+2AlY94f26/0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -37,10 +40,13 @@
       "image": "https://arnav51898.github.io/arnav resume pic.jpg",
       "description": "FAA Commercial Pilot with Instrument Rating. Aviation content creator and flight training educator with 352+ flight hours.",
       "sameAs": [
-        "https://www.youtube.com/@aerovibes25",
-        "https://www.instagram.com/arnavpareek9108",
+        "https://www.youtube.com/@pilotarnav",
+        "https://www.instagram.com/pilotarnav",
         "https://linkedin.com/in/arnav-pareek-pilot",
-        "https://x.com/ArnavPareek9108"
+        "https://x.com/ArnavPareek9108",
+        "https://medium.com/@arnavpareek9108",
+        "https://substack.com/@arnavpareekpilot",
+        "https://www.threads.com/@arnavpareek9108"
       ],
       "knowsAbout": [
         "Commercial Pilot License",
@@ -229,20 +235,26 @@
         .social { 
             display: flex; 
             justify-content: center; 
-            gap: 15px; 
+            gap: 20px; 
             flex-wrap: wrap; 
             margin: 20px 0; 
         }
         .social a { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
             background: #003d82; 
             color: white; 
-            padding: 10px 20px; 
             text-decoration: none; 
-            border-radius: 5px;
+            border-radius: 50%;
             transition: 0.3s;
+            font-size: 24px;
         }
         .social a:hover { 
-            background: var(--accent-color); 
+            background: var(--accent-color);
+            transform: scale(1.1);
         }
         .info { 
             background: var(--bg-color); 
@@ -719,6 +731,16 @@
             .blog-preview {
                 font-size: 13px;
             }
+
+            .social {
+                gap: 15px;
+            }
+
+            .social a {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -1012,15 +1034,31 @@
 
         <h3 style="color: #003d82; margin-top: 40px; margin-bottom: 20px;">Or Connect On Social Media</h3>
         <div class="social">
-            <div class="social">
-    <a href="https://www.youtube.com/@pilotarnav" target="_blank">YouTube</a>
-    <a href="https://www.instagram.com/pilotarnav" target="_blank">Instagram</a>
-    <a href="https://x.com/ArnavPareek9108" target="_blank">X/Twitter</a>
-    <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank">LinkedIn</a>
-    <a href="https://medium.com/@arnavpareek9108" target="_blank">Medium</a>
-    <a href="https://substack.com/@arnavpareekpilot" target="_blank">Substack</a>
-    <a href="https://www.threads.com/@arnavpareek9108" target="_blank">Threads</a>
-</div>
+            <a href="https://www.youtube.com/@pilotarnav" target="_blank" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/pilotarnav" target="_blank" title="Instagram Channel">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.instagram.com/arnavpareek9108" target="_blank" title="Instagram Personal">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/ArnavPareek9108" target="_blank" title="X/Twitter">
+                <i class="fab fa-x"></i>
+            </a>
+            <a href="https://linkedin.com/in/arnav-pareek-pilot" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://medium.com/@arnavpareek9108" target="_blank" title="Medium">
+                <i class="fab fa-medium"></i>
+            </a>
+            <a href="https://substack.com/@arnavpareekpilot" target="_blank" title="Substack">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.threads.com/@arnavpareek9108" target="_blank" title="Threads">
+                <i class="fas fa-at"></i>
+            </a>
+        </div>
         
         <div class="info">
             <p><strong>Email:</strong> arnavpareek9108@gmail.com</p>
