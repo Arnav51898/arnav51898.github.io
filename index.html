@@ -565,18 +565,21 @@
             margin: 2rem 0;
         }
 
-        .blog-carousel {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            width: 100%;
-            overflow: hidden;
-            scroll-behavior: smooth;
-        }
+    /* AFTER - FIXED */
+.blog-carousel {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
 
-        .blog-carousel-item {
-            min-width: 100%;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.blog-carousel-item {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
         }
 
         .carousel-arrow {
