@@ -1143,8 +1143,8 @@ function goToSlide(index) {
 }
 
 function updateCarousel() {
-    const carousel = document.querySelector('.blog-carousel');
-    const offset = -currentBlogSlide * 100;
+    const totalSlides = document.querySelectorAll('.blog-carousel-item').length;
+const offset = -(currentBlogSlide * (100 / totalSlides));
     carousel.style.transform = `translateX(${offset}%)`;
     
     const allIndicators = document.querySelectorAll('#blog .carousel-indicators .indicator');
