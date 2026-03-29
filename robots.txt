@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /private/
-Allow: / 
+Allow: /
+Sitemap: https://arnav51898.github.io/sitemap.xml
