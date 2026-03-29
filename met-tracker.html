@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MET Chapter Tracker – DGCA Study | Arnav Pareek</title>
+    <meta name="description" content="DGCA Meteorology (MET) chapter-wise practice test mark tracker for FAA licence conversion study.">
+    <meta name="author" content="Arnav Pareek">
+    <style>
+        :root {
+            --bg:        #f4f4f4;
+            --text:      #333;
+            --header-bg: linear-gradient(135deg, #003d82, #004e89);
+            --accent:    #ff6b35;
+            --card-bg:   #ffffff;
+            --shadow:    rgba(0,0,0,0.1);
+            --ch-bg:     #003d82;
+            --ch-text:   #ffffff;
+            --test-bg:   #eef3fb;
+            --border:    #c8d8f0;
+        }
+        html.dark-mode {
+            --bg:        #1a1a1a;
+            --text:      #e0e0e0;
+            --header-bg: linear-gradient(135deg, #001a4d, #002966);
+            --accent:    #ff8c42;
+            --card-bg:   #2a2a2a;
+            --shadow:    rgba(255,255,255,0.08);
+            --ch-bg:     #001f5b;
+            --ch-text:   #e0e0e0;
+            --test-bg:   #232d3f;
+            --border:    #2e4270;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--header-bg);
+            color: white;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 22px; font-weight: bold; }
+        .header-links { display: flex; gap: 12px; align-items: center; }
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .header-links a:hover { opacity: 1; color: var(--accent); }
+        .dark-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .dark-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 48px 20px 36px;
+        }
+        .hero h1 { font-size: 36px; margin-bottom: 8px; }
+        .hero p  { font-size: 16px; opacity: 0.9; }
+
+        /* ── Container ── */
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 16px 60px; }
+
+        /* ── Toolbar ── */
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            background: #003d82;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover { background: var(--accent); }
+        .btn.danger { background: #c0392b; }
+        .btn.danger:hover { background: #96281b; }
+
+        /* ── Table ── */
+        .table-wrap {
+            overflow-x: auto;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        /* Column widths */
+        table col.c-no    { width: 52px;  }
+        table col.c-ch    { width: 260px; }
+        table col.c-test  { width: 120px; }
+        table col.c-marks { width: 100px; }
+        table col.c-date  { width: 120px; }
+        table col.c-notes { }
+
+        /* Chapter header rows */
+        tr.chapter-row td {
+            background: var(--ch-bg);
+            color: var(--ch-text);
+            font-weight: bold;
+            font-size: 14px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr.chapter-row td:first-child { border-radius: 0; }
+
+        /* Practice test rows */
+        tr.test-row td {
+            background: var(--test-bg);
+            padding: 7px 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        tr.test-row:last-of-type td { border-bottom: 2px solid var(--border); }
+
+        tr.test-row .test-label {
+            font-weight: bold;
+            color: #003d82;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+        html.dark-mode tr.test-row .test-label { color: #7fb3ff; }
+
+        /* Inputs inside the table */
+        tr.test-row input[type="text"],
+        tr.test-row input[type="number"],
+        tr.test-row input[type="date"] {
+            width: 100%;
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--card-bg);
+            color: var(--text);
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        tr.test-row input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 4px var(--accent);
+        }
+
+        .marks-wrap {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .marks-wrap span { font-size: 13px; color: #666; }
+        html.dark-mode .marks-wrap span { color: #aaa; }
+        .marks-wrap input { width: 52px !important; text-align: center; }
+
+        /* Score pill */
+        .score-pill {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            min-width: 36px;
+            text-align: center;
+        }
+        .score-good  { background: #d4edda; color: #155724; }
+        .score-avg   { background: #fff3cd; color: #856404; }
+        .score-poor  { background: #f8d7da; color: #721c24; }
+
+        thead th {
+            background: #002966;
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 13px;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+
+        /* ── Legend ── */
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+            font-size: 13px;
+        }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+
+        /* ── Footer ── */
+        footer {
+            background: #003d82;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            font-size: 13px;
+        }
+
+        /* ── Print styles ── */
+        @media print {
+            header, .toolbar, .dark-btn, footer { display: none; }
+            .container { margin: 0; padding: 0; }
+            .hero { padding: 20px; }
+            input { border: 1px solid #999 !important; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">✈️ Arnav Pareek</div>
+    <div class="header-links">
+        <a href="index.html">← Back to Home</a>
+    </div>
+    <button class="dark-btn" onclick="toggleDark()">🌙 Dark Mode</button>
+</header>
+
+<div class="hero">
+    <h1>📖 MET — Chapter Tracker</h1>
+    <p>DGCA Meteorology · FAA Licence Conversion Study · Practice Test Score Log</p>
+</div>
+
+<div class="container">
+
+    <div class="toolbar">
+        <button class="btn" onclick="saveAll()">💾 Save All</button>
+        <button class="btn" onclick="window.print()">🖨️ Print</button>
+        <button class="btn danger" onclick="clearAll()">🗑️ Clear All</button>
+    </div>
+
+    <div class="table-wrap">
+        <table id="met-table">
+            <colgroup>
+                <col class="c-no">
+                <col class="c-ch">
+                <col class="c-test">
+                <col class="c-marks">
+                <col class="c-date">
+                <col class="c-notes">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Chapter / Test</th>
+                    <th>Test</th>
+                    <th>Marks (Got / Total)</th>
+                    <th>Date</th>
+                    <th>Notes / Weak Areas</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Rows are injected by JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="legend">
+        <strong>Score key:</strong>
+        <div class="legend-item"><span class="score-pill score-good">✓</span> ≥ 75 % — Good</div>
+        <div class="legend-item"><span class="score-pill score-avg">~</span> 50–74 % — Average</div>
+        <div class="legend-item"><span class="score-pill score-poor">✗</span> &lt; 50 % — Needs revision</div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Arnav Pareek · MET Chapter Tracker · Data saved in your browser (localStorage)</p>
+</footer>
+
+<script>
+// ── MET Chapter list (DGCA CPL Meteorology syllabus) ─────────────────────────
+const CHAPTERS = [
+    { no: 1,  title: "The Atmosphere – Structure & Composition" },
+    { no: 2,  title: "Temperature – Lapse Rates & ISA" },
+    { no: 3,  title: "Atmospheric Pressure & Density" },
+    { no: 4,  title: "Altimetry – QNH, QFE, QNE & Altimeter Errors" },
+    { no: 5,  title: "Wind – Causes, Types & Effects on Flight" },
+    { no: 6,  title: "Humidity, Dew Point & Stability" },
+    { no: 7,  title: "Clouds – Formation, Classification & Heights" },
+    { no: 8,  title: "Fog, Mist & Low Visibility" },
+    { no: 9,  title: "Precipitation – Types & Formation" },
+    { no: 10, title: "Air Masses – Types & Source Regions" },
+    { no: 11, title: "Fronts – Warm, Cold, Occluded & Stationary" },
+    { no: 12, title: "Thunderstorms – Development & Hazards" },
+    { no: 13, title: "Icing – Types, Causes & Aircraft Effects" },
+    { no: 14, title: "Turbulence – Types, CAT & Wind Shear" },
+    { no: 15, title: "High Altitude Meteorology & Jet Streams" },
+    { no: 16, title: "Tropical Meteorology & Monsoon" },
+    { no: 17, title: "Aviation Weather Reports – METAR & SPECI" },
+    { no: 18, title: "Aviation Weather Forecasts – TAF" },
+    { no: 19, title: "SIGMETs, AIRMETs & Special Warnings" },
+    { no: 20, title: "Aviation Weather Charts – Analysis & Prog" },
+];
+
+const LS_KEY = "met_tracker_v1";
+
+// ── Build table rows ──────────────────────────────────────────────────────────
+function buildTable() {
+    const tbody = document.getElementById("table-body");
+    tbody.innerHTML = "";
+
+    CHAPTERS.forEach(ch => {
+        // Chapter header row
+        const chRow = document.createElement("tr");
+        chRow.className = "chapter-row";
+        chRow.innerHTML = `
+            <td>${ch.no}</td>
+            <td colspan="5">Chapter ${ch.no}: ${ch.title}</td>
+        `;
+        tbody.appendChild(chRow);
+
+        // 2 practice test rows
+        for (let t = 1; t <= 2; t++) {
+            const key = `ch${ch.no}_t${t}`;
+            const saved = getSaved(key);
+
+            const tr = document.createElement("tr");
+            tr.className = "test-row";
+            tr.dataset.key = key;
+
+            tr.innerHTML = `
+                <td></td>
+                <td><span class="test-label">Practice Test ${t}</span></td>
+                <td style="text-align:center;">
+                    <span class="score-pill" id="pill_${key}"></span>
+                </td>
+                <td>
+                    <div class="marks-wrap">
+                        <input type="number" min="0" max="999"
+                               id="got_${key}"
+                               placeholder="Got"
+                               value="${saved.got}"
+                               oninput="updatePill('${key}')"
+                               onchange="saveRow('${key}')">
+                        <span>/</span>
+                        <input type="number" min="0" max="999"
+                               id="tot_${key}"
+                               placeholder="Out of"
+                               value="${saved.tot}"
+                               oninput="updatePill('${key}')"
+                               onchange="saveRow('${key}')">
+                    </div>
+                </td>
+                <td>
+                    <input type="date"
+                           id="dt_${key}"
+                           value="${saved.dt}"
+                           onchange="saveRow('${key}')">
+                </td>
+                <td>
+                    <input type="text"
+                           id="note_${key}"
+                           placeholder="e.g. Revise METAR decoding"
+                           value="${saved.note}"
+                           onchange="saveRow('${key}')">
+                </td>
+            `;
+            tbody.appendChild(tr);
+            updatePill(key);
+        }
+    });
+}
+
+// ── Score pill colour logic ───────────────────────────────────────────────────
+function updatePill(key) {
+    const gotEl = document.getElementById("got_" + key);
+    const totEl = document.getElementById("tot_" + key);
+    const pill  = document.getElementById("pill_" + key);
+    if (!gotEl || !totEl || !pill) return;
+
+    const got = parseFloat(gotEl.value);
+    const tot = parseFloat(totEl.value);
+
+    if (!isNaN(got) && !isNaN(tot) && tot > 0) {
+        const pct = (got / tot) * 100;
+        if (pct >= 75) {
+            pill.className = "score-pill score-good";
+            pill.textContent = Math.round(pct) + "%";
+        } else if (pct >= 50) {
+            pill.className = "score-pill score-avg";
+            pill.textContent = Math.round(pct) + "%";
+        } else {
+            pill.className = "score-pill score-poor";
+            pill.textContent = Math.round(pct) + "%";
+        }
+    } else {
+        pill.className = "score-pill";
+        pill.textContent = "";
+    }
+}
+
+// ── localStorage helpers ──────────────────────────────────────────────────────
+function loadAll() {
+    const raw = localStorage.getItem(LS_KEY);
+    return raw ? JSON.parse(raw) : {};
+}
+
+function getSaved(key) {
+    const data = loadAll();
+    return data[key] || { got: "", tot: "", dt: "", note: "" };
+}
+
+function saveRow(key) {
+    const data = loadAll();
+    data[key] = {
+        got:  document.getElementById("got_"  + key)?.value  || "",
+        tot:  document.getElementById("tot_"  + key)?.value  || "",
+        dt:   document.getElementById("dt_"   + key)?.value  || "",
+        note: document.getElementById("note_" + key)?.value  || "",
+    };
+    localStorage.setItem(LS_KEY, JSON.stringify(data));
+    updatePill(key);
+}
+
+function saveAll() {
+    CHAPTERS.forEach(ch => {
+        for (let t = 1; t <= 2; t++) saveRow(`ch${ch.no}_t${t}`);
+    });
+    showToast("✅ All data saved!");
+}
+
+function clearAll() {
+    if (!confirm("Clear ALL saved marks? This cannot be undone.")) return;
+    localStorage.removeItem(LS_KEY);
+    buildTable();
+    showToast("🗑️ All data cleared.");
+}
+
+// ── Toast notification ────────────────────────────────────────────────────────
+function showToast(msg) {
+    let toast = document.getElementById("toast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "toast";
+        Object.assign(toast.style, {
+            position: "fixed", bottom: "24px", right: "24px",
+            background: "#003d82", color: "white",
+            padding: "12px 20px", borderRadius: "6px",
+            fontWeight: "bold", fontSize: "14px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+            zIndex: "9999", opacity: "0", transition: "opacity 0.3s"
+        });
+        document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = "1";
+    setTimeout(() => { toast.style.opacity = "0"; }, 2500);
+}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+function toggleDark() {
+    const isDark = document.documentElement.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDark ? "1" : "0");
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+if (localStorage.getItem("darkMode") === "1") {
+    document.documentElement.classList.add("dark-mode");
+}
+buildTable();
+</script>
+
+</body>
+</html>
